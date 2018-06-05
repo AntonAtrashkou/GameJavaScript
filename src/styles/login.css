@@ -1,0 +1,9 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    border: solid green;
+    background: yellow;
+}

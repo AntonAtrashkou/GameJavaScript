@@ -1,0 +1,23 @@
+.game {
+    display: none;
+    width: 500px;
+    height: 500px;
+}
+
+.actionBar {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+.actionBar ul {
+    list-style-type: none;
+  }
+
+.actionBarBotton {
+    width: 100px;
+    height: 100px;
+    background: yellow;
+}
+.actionBarBotton:hover {
+    background: tomato;
+}
