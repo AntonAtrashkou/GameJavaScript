@@ -10,7 +10,7 @@ const base = {
     path: path.join(__dirname, './public'),
     filename: 'bundle.js',
   },
-
+ 
   plugins: [
     new ExtractTextPlugin({
       filename: 'bundle.css',
@@ -35,14 +35,13 @@ const base = {
     rules: [
       {
         test: /\.(png|svg|jpg)$/,
-        loader: 'file-loader?name=[path][name].[ext]',
+        loader: 'file-loader?name=./assets/[name].[ext]',
       },
-
-    //   {
-    //     test: /\.js$/,
-    //     exclude: /node_modules/,
-    //     loader: 'babel-loader',
-    //   },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',

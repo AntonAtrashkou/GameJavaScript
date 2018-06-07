@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <main>
+
     <section id="login" class="login">
       <h2>Welcome Guest!</h2>
       <p>Please enter your First name, Last Name and email here</p>
@@ -29,8 +30,13 @@
           </div>
       </form>
     </section>
-    <section class="game">
-      <div class="actionBar">
+    <section id="newGame" class="newGame">
+      <span id="loader" class="loader"></span>
+    </section>
+    <section id="game" class="game">
+      <button id="start">start</button>
+      <span>game</span>
+      <!-- <div class="actionBar">
         <ul>
           <li>
             <div>
@@ -53,9 +59,12 @@
             </div>
           </li>
         </ul>
-      </div>
-    <canvas id="canvas" class="canvas"></canvas>
-  </section>
-  </main>
+      </div> -->
+      <canvas id="canvas" class="canvas"></canvas>
+    </section>
+    <section id="score" class="score">
+        <span>score</span>
+    </section>
+
 </body>
 </html>

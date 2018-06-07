@@ -29,7 +29,12 @@ export default class Login {
     
     checkInputs(forward) {
         if (this.firstName && this.lastName && this.email) {
-            forward({ firstName: this.firstName, lastName: this.lastName, email: this.email } );
+            forward({
+                firstName: this.firstName, 
+                lastName: this.lastName, 
+                email: this.email,
+                preload: true,
+            } );
         } else {
             console.log('name or email is empty');
         }
