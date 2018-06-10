@@ -1,8 +1,9 @@
 export default class Sprite {
-    constructor(context, width, height, image, speed, frames) {
+    constructor(context, width, imgWidth, imgHeight, image, speed, frames) {
         this.context = context;
         this.width = width;
-        this.height = height;
+        this.imgWidth = imgWidth;
+        this.imgHeight = imgHeight;
         this.image = image;
         this.speed = speed;
         this.frames = frames;
@@ -13,19 +14,19 @@ export default class Sprite {
     render(position) {
         const roundedDuration = Math.round(this.duration);
         const frame = this.frames[roundedDuration % this.framesNum];
-        const x = frame * this.width;
-        const y = 0;
+        const x = this.width;
+        const y = frame * this.imgHeight;
 
         this.context.drawImage(
             this.image,
             x,
             y,
-            this.width,
-            this.height,
+            this.imgWidth,
+            this.imgHeight,
             position[0],
             position[1],
-            this.width,
-            this.height);
+            this.imgWidth,
+            this.imgHeight);
     }
 
     update(diff) {
