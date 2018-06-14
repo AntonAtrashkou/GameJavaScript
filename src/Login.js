@@ -34,7 +34,7 @@ export default class Login {
                 lastName: this.lastName, 
                 email: this.email,
                 preload: true,
-            } );
+            });
         } else {
             console.log('name or email is empty');
         }

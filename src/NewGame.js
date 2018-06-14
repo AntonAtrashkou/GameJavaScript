@@ -7,6 +7,7 @@ import './img/spriteTrollStatic.png';
 import './img/spriteTrollAttack.png';
 import './img/spriteTrollHurt.png';
 import './img/spriteTrollDie.png';
+import './img/spriteEffects.png';
 
 export default class NewGame {
     constructor (forward) {
@@ -23,7 +24,7 @@ export default class NewGame {
 
     loadAssets() {
         this.loader.style.display = 'block';
-        const idsImg = ['bgdImg', 'spriteKnightImg', 'spriteTrollStaticImg', 'spriteTrollAttackImg', 'spriteTrollHurtImg', 'spriteTrollDieImg'];
+        const idsImg = ['bgdImg', 'spriteKnightImg', 'spriteTrollStaticImg', 'spriteTrollAttackImg', 'spriteTrollHurtImg', 'spriteTrollDieImg', 'spriteEffectsImg'];
         const promises = [
             fetch('/assets/background.png'),
             fetch('/assets/spriteKnight.png'),
@@ -31,6 +32,7 @@ export default class NewGame {
             fetch('/assets/spriteTrollAttack.png'),
             fetch('/assets/spriteTrollHurt.png'),
             fetch('/assets/spriteTrollDie.png'),
+            fetch('/assets/spriteEffects.png'),
         ];  
         Promise.all(promises)
             .then(values => {
@@ -45,7 +47,7 @@ export default class NewGame {
                 setTimeout(() => {
                     this.loader.style.display = 'none';
                     this.forward({ images: this.images, preload: false });
-                }, 2000);
+                }, 1000);
             })
             
     }

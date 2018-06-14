@@ -1,5 +1,5 @@
 export default class Sprite {
-    constructor(context, width, imgWidth, imgHeight, image, speed, frames) {
+    constructor(context, width, imgWidth, imgHeight, image, speed, frames, isInfinite) {
         this.context = context;
         this.width = width;
         this.imgWidth = imgWidth;
@@ -9,13 +9,28 @@ export default class Sprite {
         this.frames = frames;
         this.framesNum = frames.length;
         this.duration = 0;
+
+        this.isInfinite = isInfinite;
+        this.lastFrame = frames[frames.length - 1];
+        
+        this.frame = 0;
+        this.flag = true;
     }
+
 
     render(position) {
         const roundedDuration = Math.round(this.duration);
-        const frame = this.frames[roundedDuration % this.framesNum];
+        if (this.flag) {
+            this.frame = this.frames[roundedDuration % this.framesNum];
+        }
+        if (!this.isInfinite && this.frame === this.lastFrame) {
+            this.flag = false;
+        }
+        // console.log('duration ', this.duration);        
+        // console.log(frame);
+        // console.log('this.lastFrame ', this.lastFrame);
         const x = this.width;
-        const y = frame * this.imgHeight;
+        const y = this.frame * this.imgHeight;
 
         this.context.drawImage(
             this.image,
