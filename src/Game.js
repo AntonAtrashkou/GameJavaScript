@@ -48,7 +48,7 @@ export default class Game {
         // 0 1255
         this.Hero = new Hero(this.ctx, [180, 355], this.images['spriteKnightImg']);
         this.Enemy = new Enemy(this.ctx, this.images['spriteTrollHurtImg']);
-        this.AttackHero = new AttackHero(this.ctx, [310, 400], this.images['spriteEffectsImg']);
+        this.AttackHero = new AttackHero(this.ctx, this.images['spriteEffectsImg']);
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];
         this.background = new Background(
