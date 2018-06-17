@@ -6,7 +6,7 @@ export default class Hero {
         this.position = position;
 
         this.heroSprites = {};
-        this.currentState = 'idle';
+        this.currentState = 'atack';
         this.initHero(img);
     }
 

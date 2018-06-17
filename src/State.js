@@ -3,6 +3,7 @@ import Game from './Game';
 import NewGame from './NewGame';
 import Score from './Score';
 
+
 export default class State {
     constructor() {
         this.state = {

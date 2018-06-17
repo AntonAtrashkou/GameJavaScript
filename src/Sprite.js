@@ -26,9 +26,7 @@ export default class Sprite {
         if (!this.isInfinite && this.frame === this.lastFrame) {
             this.flag = false;
         }
-        // console.log('duration ', this.duration);        
-        // console.log(frame);
-        // console.log('this.lastFrame ', this.lastFrame);
+        
         const x = this.width;
         const y = this.frame * this.imgHeight;
 

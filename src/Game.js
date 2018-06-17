@@ -2,6 +2,7 @@ import './styles/game.css';
 import Background from './Background';
 import Enemy from './Enemy';
 import Hero from './Hero';
+import AttackHero from './AttackHero';
 import Sprite from './Sprite';
 
 export default class Game {
@@ -46,6 +47,8 @@ export default class Game {
     createSprites() {
         // 0 1255
         this.Hero = new Hero(this.ctx, [180, 355], this.images['spriteKnightImg']);
+        this.Enemy = new Enemy(this.ctx, this.images['spriteTrollHurtImg']);
+        this.AttackHero = new AttackHero(this.ctx, [310, 400], this.images['spriteEffectsImg']);
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];
         this.background = new Background(
@@ -57,30 +60,17 @@ export default class Game {
     updateAll(diff) {
         this.background.update(diff);
         this.Hero.update(diff);
-        // this.heroDie.update(diff);
-        // this.heroHurt.update(diff);
-        // this.heroAttack.update(diff);
-        // this.enemyRightLeg.update(diff);
-        // this.enemyLeftLeg.update(diff);
-        // this.enemyRightArm.update(diff);
-        // this.enemyBody.update(diff);
-        // this.enemyLeftArm.update(diff);
-        // this.enemyHead.update(diff);
+        this.Enemy.update(diff);
+        this.AttackHero.update(diff);
+
     }
 
     renderAll() {
         this.ctx.clearRect(0, 0, 900, 506);
         this.background.render();
         this.Hero.render();
-        // this.heroDie.render();
-        // this.heroHurt.render();
-        // this.heroAttack.render();
-        // this.enemyRightLeg.render();
-        // this.enemyLeftLeg.render();
-        // this.enemyRightArm.render();
-        // this.enemyBody.render();
-        // this.enemyLeftArm.render();
-        // this.enemyHead.render();
+        this.Enemy.render();
+        this.AttackHero.render();
     }
 }
 
