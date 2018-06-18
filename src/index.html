@@ -35,32 +35,42 @@
     </section>
     <section id="game" class="game">
       <button id="start">start</button>
-      <span>game</span>
-      <!-- <div class="actionBar">
+      <button id="atack" class="atack">Atack</button>
+      <div id="pickMagic" class="pickMagic">
         <ul>
           <li>
             <div>
-              <button class="actionBarBotton">First</button>
+              <button id = "mathTask" class="actionBarButton">MathTask</button>
             </div>
           </li>
           <li>
             <div>
-              <button class="actionBarBotton">Second</button>
+              <button id = "2Task" class="actionBarButton">Second</button>
             </div>
           </li>
           <li>
             <div>
-              <button class="actionBarBotton">Third</button>
+              <button id = "3Task" class="actionBarButton">Third</button>
             </div>
           </li>
           <li>
             <div>
-              <button class="actionBarBotton">Fourth</button>
+              <button id = "4Task" class="actionBarButton">Fourth</button>
             </div>
           </li>
         </ul>
-      </div> -->
+      </div>
       <canvas id="canvas" class="canvas"></canvas>
+      <div id="task" class="task">
+          <input id="task-answer" type="text" placeholder="Answer" required>
+          <button id="accept-task" class="button">Reply!</button>
+      </div>
+      <div id="lost-screen" class="lost-screen">
+          <span>lost</span>
+      </div>
+      <div id="won-screen" class="won-screen">
+        <span>won</span>
+      </div>
     </section>
     <section id="score" class="score">
         <span>score</span>

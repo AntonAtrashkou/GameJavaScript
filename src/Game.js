@@ -3,6 +3,7 @@ import Background from './Background';
 import Enemy from './Enemy';
 import Hero from './Hero';
 import AttackHero from './AttackHero';
+import Tasks from './Tasks';
 import Sprite from './Sprite';
 
 export default class Game {
@@ -14,26 +15,54 @@ export default class Game {
         this.ctx = canvas.getContext('2d');
 
         this.mainLoop = this.mainLoop.bind(this);
-        this.startButton = document.getElementById('start');
-        this.start = Date.now();
-        this.startButton.addEventListener('click', () => {
-            
-            this.mainLoop();
 
-            setTimeout(() => {
-                this.Hero.changeCurrrentHeroSprite('die');
-            }, 5000);
-        });
+        this.initGame();
 
         this.stateSubscrioption = document.addEventListener('updateState', (e) => {
             if (e.detail.images) {
                 this.images = e.detail.images;
                 this.createSprites();
-            } 
+            }
         });
     };
+    
+    initGame() {
+        this.startButton = document.getElementById('start');
+        this.atackButton = document.getElementById('atack');
+
+        this.pickMagic = document.getElementById('pickMagic');
+        // this.mathMagic = document.getElementById('mathMagic');
+
+        // this.pickMagics = document.getElementsByClassName('actionBarButton');
+
+        this.atackSubscription = this.atackButton.addEventListener('click', () => {
+            this.pickMagic.style.display = 'flex';        
+        });
+
+        this.pickMagic.addEventListener('click', (e) => {
+            this.Task = new Tasks(e.srcElement.id, this.Hero.changeCurrrentHeroSprite('atack'), this.Enemy.changeCurrrentSprite('atack'))
+        });
 
 
+        // for (let i = 0; i < this.pickMagics.length; i++) {
+        //     this.pickMagics[i].addEventListener('click', () => {
+        //         this.showTask();
+        //     });
+        // }
+
+        this.startButton.addEventListener('click', () => {
+            this.start = Date.now();
+            document.getElementById('atack').style.display = 'block';        
+            this.mainLoop();
+        });
+    }
+
+    // showTask() {
+        // debugger;
+        // document.getElementById('math-task').style.display = 'block';
+    // }
+
+    
 
     mainLoop() {
         const now = Date.now();
@@ -45,9 +74,8 @@ export default class Game {
     }
 
     createSprites() {
-        // 0 1255
         this.Hero = new Hero(this.ctx, [180, 355], this.images['spriteKnightImg']);
-        this.Enemy = new Enemy(this.ctx, this.images['spriteTrollHurtImg']);
+        this.Enemy = new Enemy(this.ctx, this.images);
         this.AttackHero = new AttackHero(this.ctx, this.images['spriteEffectsImg']);
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];
@@ -73,96 +101,3 @@ export default class Game {
         this.AttackHero.render();
     }
 }
-
-// this.enemyHead = new Enemy(
-//     new Sprite(this.ctx, 0, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [495, 215],
-// );
-// this.enemyBody = new Enemy(
-//     new Sprite(this.ctx, 215, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [500, 255],
-// );
-// this.enemyLeftArm = new Enemy(
-//     new Sprite(this.ctx, 425, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [555, 265],
-// );
-// this.enemyRightArm = new Enemy(
-//     new Sprite(this.ctx, 635, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [410, 275],
-// );
-// this.enemyLeftLeg = new Enemy(
-//     new Sprite(this.ctx, 845, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [520, 325],
-// );
-// this.enemyRightLeg = new Enemy(
-//     new Sprite(this.ctx, 1055, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [485, 325],
-// );
-// const backgroundImage = new Image();
-// backgroundImage.src = this.images['bgdImg'];
-// this.background = new Background(
-//     new Sprite(this.ctx, 0, 900, 506, backgroundImage, 12, [0]),
-//     [0, 0],
-// );
-
-// this.enemyHead = new Enemy(
-//     new Sprite(this.ctx, 1255, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [495, 215],
-// );
-// this.enemyBody = new Enemy(
-//     new Sprite(this.ctx, 1470, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [500, 255],
-// );
-// this.enemyLeftArm = new Enemy(
-//     new Sprite(this.ctx, 1680, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [555, 265],
-// );
-// this.enemyRightArm = new Enemy(
-//     new Sprite(this.ctx, 1890, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [410, 275],
-// );
-// this.enemyLeftLeg = new Enemy(
-//     new Sprite(this.ctx, 2100, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [520, 325],
-// );
-// this.enemyRightLeg = new Enemy(
-//     new Sprite(this.ctx, 2310, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [485, 325],
-// );
-// const backgroundImage = new Image();
-// backgroundImage.src = this.images['bgdImg'];
-// this.background = new Background(
-//     new Sprite(this.ctx, 0, 900, 506, backgroundImage, 1, [0]),
-//     [0, 0],
-// );
-
-// this.enemyHead = new Enemy(
-//     new Sprite(this.ctx, 2510, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [495, 215],
-// );
-// this.enemyBody = new Enemy(
-//     new Sprite(this.ctx, 2725, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [500, 255],
-// );
-// this.enemyLeftArm = new Enemy(
-//     new Sprite(this.ctx, 2935, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [555, 265],
-// );
-// this.enemyRightArm = new Enemy(
-//     new Sprite(this.ctx, 3145, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [410, 275],
-// );
-// this.enemyLeftLeg = new Enemy(
-//     new Sprite(this.ctx, 3355, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [520, 325],
-// );
-// this.enemyRightLeg = new Enemy(
-//     new Sprite(this.ctx, 3565, 210, 210, enemyImage, 1, [0,1,2,3,4]),
-//     [485, 325],
-// );
-// const backgroundImage = new Image();
-// backgroundImage.src = this.images['bgdImg'];
-// this.background = new Background(
-//     new Sprite(this.ctx, 0, 900, 506, backgroundImage, 1, [0]),
-//     [0, 0],
-// );

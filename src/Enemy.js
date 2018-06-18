@@ -2,73 +2,56 @@ import Sprite from './Sprite';
 import RandomingEnemy from './RandomingEnemy';
 
 export default class Enemy {
-    constructor(ctx, img) {
+    constructor(ctx, imgs) {
         this.ctx = ctx;
-        this.images = {};
-        this.sprites = {
-            'idle':'spriteTrollStaticImg',
-            'die':'spriteTrollDieImg',
-            'hurt':'spriteTrollHurtImg',
-            'atack':'spriteTrollAttackImg',
+        this.images = {
+            'idle': imgs['spriteTrollStaticImg'],
+            'die': imgs['spriteTrollDieImg'],
+            'hurt': imgs['spriteTrollHurtImg'],
+            'atack': imgs['spriteTrollAttackImg'],
         };
+        this.sprites = {};
+        this.currentState = 'idle';
+
         this.positions = {
-            enemyHead:[495, 215],
-            enemyBody:[500, 255],
-            enemyLeftArm:[555, 265],
-            enemyRightArm:[410, 275],
-            enemyLeftLeg:[520, 325],
-            enemyRightLeg:[485, 325]
+            rightLeg: [485, 325],
+            leftLeg: [520, 325],
+            rightArm: [410, 275],
+            body: [500, 255],
+            lefrArm: [555, 265],
+            head: [495, 215],
         };
 
         this.randomingEnemy = new RandomingEnemy(0, 2);
-        this.initHero(img);
-                
-        // this.stateSubscrioption = document.addEventListener('updateState', (e) => {
-        //     if (e.detail.images) {
-        //         this.images = e.detail.images;
-        //         this.initHero(this.images['spriteTrollStaticImg']);
-        //     } 
-        // });
-        // this.currentState = 'idle';
-    }
-     initHero(img) {
-        const enemyImage = new Image();
-        enemyImage.src = img;
-        this.enemyHead = new Sprite(this.ctx, this.randomingEnemy.head, 210, 210, enemyImage, 5, [0,1,2,3,4], true);
-        this.enemyBody = new Sprite(this.ctx, this.randomingEnemy.body, 210, 210, enemyImage, 5, [0,1,2,3,4], true);
-        this.enemyLeftArm = new Sprite(this.ctx, this.randomingEnemy.leftArm, 210, 210, enemyImage, 5, [0,1,2,3,4], true);
-        this.enemyRightArm = new Sprite(this.ctx, this.randomingEnemy.rightArm, 210, 210, enemyImage, 5, [0,1,2,3,4], true);
-        this.enemyLeftLeg = new Sprite(this.ctx, this.randomingEnemy.leftLeg, 210, 210, enemyImage, 5, [0,1,2,3,4], true);
-        this.enemyRightLeg = new Sprite(this.ctx, this.randomingEnemy.rightLeg, 210, 210, enemyImage, 5, [0,1,2,3,4], true);
+        this.init();
     }
 
-    // changeCurrrentEnemySprite(key) {
-    //     this.currentState = key;
-    // }
+    init() {
+        Object.entries(this.images).forEach(entrie => {
+            const enemyImage = new Image();
+            enemyImage.src = entrie[1];
+            this.sprites[entrie[0]] = {
+                rightLeg: new Sprite(this.ctx, this.randomingEnemy.rightLeg, 210, 210, enemyImage, 16, [0,1,2,3,4], true),
+                leftLeg: new Sprite(this.ctx, this.randomingEnemy.leftLeg, 210, 210, enemyImage, 16, [0,1,2,3,4], true),
+                rightArm: new Sprite(this.ctx, this.randomingEnemy.rightArm, 210, 210, enemyImage, 16, [0,1,2,3,4], true),
+                body: new Sprite(this.ctx, this.randomingEnemy.body, 210, 210, enemyImage, 16, [0,1,2,3,4], true),
+                lefrArm: new Sprite(this.ctx, this.randomingEnemy.leftArm, 210, 210, enemyImage, 16, [0,1,2,3,4], true),
+                head: new Sprite(this.ctx, this.randomingEnemy.head, 210, 210, enemyImage, 16, [0,1,2,3,4], true),
+            }
+        }); 
+    }
+
+    changeCurrrentSprite(key) {
+        this.currentState = key;
+    }
 
     update(diff) {
-        this.enemyRightLeg.update(diff);
-        this.enemyLeftLeg.update(diff);
-        this.enemyRightArm.update(diff);
-        this.enemyBody.update(diff);
-        this.enemyLeftArm.update(diff);
-        this.enemyHead.update(diff);
+        Object.values(this.sprites[this.currentState]).forEach(value => value.update(diff));
     }
 
     render() {
-        this.enemyRightLeg.render(this.positions.enemyRightLeg);
-        this.enemyLeftLeg.render(this.positions.enemyLeftLeg);
-        this.enemyRightArm.render(this.positions.enemyRightArm);
-        this.enemyBody.render(this.positions.enemyBody);
-        this.enemyLeftArm.render(this.positions.enemyLeftArm);
-        this.enemyHead.render(this.positions.enemyHead);
+        Object.entries(this.sprites[this.currentState]).forEach(entrie => {
+            entrie[1].render(this.positions[entrie[0]]);
+        });
     }
 }
-
-
-        // this.enemyRightLeg.update(diff);
-        // this.enemyLeftLeg.update(diff);
-        // this.enemyRightArm.update(diff);
-        // this.enemyBody.update(diff);
-        // this.enemyLeftArm.update(diff);
-        // this.enemyHead.update(diff);

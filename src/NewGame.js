@@ -48,9 +48,6 @@ export default class NewGame {
                     this.loader.style.display = 'none';
                     this.forward({ images: this.images, preload: false });
                 }, 1000);
-            })
-            
+            })    
     }
-
-
 }
