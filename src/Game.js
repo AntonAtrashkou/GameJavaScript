@@ -31,24 +31,18 @@ export default class Game {
         this.atackButton = document.getElementById('atack');
 
         this.pickMagic = document.getElementById('pickMagic');
-        // this.mathMagic = document.getElementById('mathMagic');
-
-        // this.pickMagics = document.getElementsByClassName('actionBarButton');
 
         this.atackSubscription = this.atackButton.addEventListener('click', () => {
             this.pickMagic.style.display = 'flex';        
         });
 
         this.pickMagic.addEventListener('click', (e) => {
-            this.Task = new Tasks(e.srcElement.id, this.Hero.changeCurrrentHeroSprite('atack'), this.Enemy.changeCurrrentSprite('atack'))
+            this.Task = new Tasks(
+                e.srcElement.id,
+                this.Hero.changeCurrrentHeroSprite.bind(this.Hero), 
+                this.Enemy.changeCurrrentSprite.bind(this.Enemy),
+            );
         });
-
-
-        // for (let i = 0; i < this.pickMagics.length; i++) {
-        //     this.pickMagics[i].addEventListener('click', () => {
-        //         this.showTask();
-        //     });
-        // }
 
         this.startButton.addEventListener('click', () => {
             this.start = Date.now();
@@ -56,13 +50,6 @@ export default class Game {
             this.mainLoop();
         });
     }
-
-    // showTask() {
-        // debugger;
-        // document.getElementById('math-task').style.display = 'block';
-    // }
-
-    
 
     mainLoop() {
         const now = Date.now();

@@ -1,12 +1,10 @@
 export default class MathTask {
-    constructor(min, max) {;
+    constructor(min, max) {
         this.operators =['+', '-', '*', '/'];
-
-        this.operator = this.operators[this.generateRandomInteger(0, 4)];
         this.firstOperand = this.generateRandomInteger(min, max);
         this.secondOperand = this.generateRandomInteger(min, max);
-
-        this.resul = this.generateResult(this.operator);
+        this.generateOperator();
+        this.generateResult(this.operator);
         this.text = 'wqeqweqweqweqwe';
         this.condition = `${this.firstOperand} ${this.operator} ${this.secondOperand }`;
     }
@@ -17,8 +15,7 @@ export default class MathTask {
     }
 
     generateOperator() {
-        const operators =['+', '-', '*', '/'];
-        this.operator = operators[this.generateRandomInteger(0, 4)];
+        this.operator = this.operators[this.generateRandomInteger(0, 4)];
         if (this.operator === '/') {
             this.firstOperand = this.firstOperand * this.secondOperand;
         }
