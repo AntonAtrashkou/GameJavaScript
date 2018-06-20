@@ -8,6 +8,8 @@ export default class AttackHero {
         this.heroAttackSprites = {};
         this.currentAttackState = 'fireball';
         this.initAttackHero(img);
+
+        this.isAtack = false;
     }
 
     initAttackHero(img) {
@@ -30,12 +32,25 @@ export default class AttackHero {
         this.currentAttackState = key;
     }
 
+    triggerAtack(callback) {
+        this.isAtack = true;
+        setTimeout(() => {
+            callback();
+            this.isAtack = false;
+            this.position = [310, 400];
+        }, 700);
+    }
+
     update(diff) {
-        this.heroAttackSprites[this.currentAttackState].update(diff);
-        this.changeCurrrentAttackposition()
+        if (this.isAtack) {
+            this.heroAttackSprites[this.currentAttackState].update(diff);
+            this.changeCurrrentAttackposition()
+        }
     }
 
     render() {
-        this.heroAttackSprites[this.currentAttackState].render(this.position);
+        if (this.isAtack) {
+            this.heroAttackSprites[this.currentAttackState].render(this.position);
+        }
     }
 }

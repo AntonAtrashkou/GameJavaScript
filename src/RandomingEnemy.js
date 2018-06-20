@@ -8,12 +8,12 @@ export default class RandomingEnemy {
         return rand = Math.floor(rand);
     }
     randomEnemyForm(min, max) {
-        this.head = this.randomNumder(min, max) * 1255;
-        this.body = this.randomNumder(min, max) * 1255 + 215;
-        this.leftArm = this.randomNumder(min, max) * 1255 + 425;
-        this.rightArm = this.randomNumder(min, max) * 1255 + 635;
-        this.leftLeg = this.randomNumder(min, max) * 1255 + 845;
-        this.rightLeg = this.randomNumder(min, max) * 1255 + 1055;
+        this.head = this.randomNumder(min, max) * 1257.5;
+        this.body = this.randomNumder(min, max) * 1257.5 + 215;
+        this.leftArm = this.randomNumder(min, max) * 1257.5 + 425;
+        this.rightArm = this.randomNumder(min, max) * 1257.5 + 635;
+        this.leftLeg = this.randomNumder(min, max) * 1257.5 + 845;
+        this.rightLeg = this.randomNumder(min, max) * 1257.5 + 1055;
     };
 }
 

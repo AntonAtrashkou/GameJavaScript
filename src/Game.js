@@ -39,8 +39,8 @@ export default class Game {
         this.pickMagic.addEventListener('click', (e) => {
             this.Task = new Tasks(
                 e.srcElement.id,
-                this.Hero.changeCurrrentHeroSprite.bind(this.Hero), 
-                this.Enemy.changeCurrrentSprite.bind(this.Enemy),
+                this.Hero, 
+                this.Enemy,
             );
         });
 
@@ -61,9 +61,8 @@ export default class Game {
     }
 
     createSprites() {
-        this.Hero = new Hero(this.ctx, [180, 355], this.images['spriteKnightImg']);
+        this.Hero = new Hero(this.ctx, [180, 355], this.images);
         this.Enemy = new Enemy(this.ctx, this.images);
-        this.AttackHero = new AttackHero(this.ctx, this.images['spriteEffectsImg']);
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];
         this.background = new Background(
@@ -76,8 +75,6 @@ export default class Game {
         this.background.update(diff);
         this.Hero.update(diff);
         this.Enemy.update(diff);
-        this.AttackHero.update(diff);
-
     }
 
     renderAll() {
@@ -85,6 +82,5 @@ export default class Game {
         this.background.render();
         this.Hero.render();
         this.Enemy.render();
-        this.AttackHero.render();
     }
 }

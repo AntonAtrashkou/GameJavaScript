@@ -15,7 +15,7 @@ export default class MathTask {
     }
 
     generateOperator() {
-        this.operator = this.operators[this.generateRandomInteger(0, 4)];
+        this.operator = this.operators[this.generateRandomInteger(0, 3)];
         if (this.operator === '/') {
             this.firstOperand = this.firstOperand * this.secondOperand;
         }

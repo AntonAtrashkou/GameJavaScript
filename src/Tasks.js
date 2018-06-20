@@ -1,7 +1,7 @@
 import MathTask from './MathTask';
 
 export default class Tasks {
-    constructor(id, heroAttack, enemyAttack) {
+    constructor(id, hero, enemy) {
         this.allTasks = {
             "mathTask": new MathTask(1, 10),
         };
@@ -13,7 +13,7 @@ export default class Tasks {
         this.wonScreen = document.getElementById('won-screen');
 
         this.init(this.allTasks[id]);
-        this.checkResult(heroAttack, enemyAttack);
+        this.setCheckResult(hero, enemy);
     }
     init(currentTask) {
         this.taskText = document.createElement('div');
@@ -26,24 +26,28 @@ export default class Tasks {
         this.task.style.display = 'block';
     }
 
-    checkResult(heroAttack, enemyAttack) { 
+    setCheckResult(hero, enemy) { 
         this.accept = this.acceptTaskButton.addEventListener('click', () => {
             if (+this.taskAnswer.value === this.result) {
                 this.task.style.display = 'none';
                 this.wonScreen.style.display = 'block';
                 setTimeout(() => {
                     this.wonScreen.style.display = 'none';
-                    heroAttack('atack');
+
+                    hero.atack(enemy.triggerHurt.bind(enemy));
+
                 }, 2000);
             } else {
                 this.task.style.display = 'none';
                 this.lostScreen.style.display = 'block';
                 setTimeout(() => {
                     this.lostScreen.style.display = 'none';
-                    enemyAttack('atack');
+                    
+                    enemy.atack(hero.triggerHurt.bind(hero));
+
                 }, 2000);
-                enemyAttack('idle');
             } 
-        });           
+        });
+               
     }
 }
