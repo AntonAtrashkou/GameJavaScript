@@ -6,7 +6,7 @@ export default class AttackHero {
         this.position = [310, 400];
 
         this.heroAttackSprites = {};
-        this.currentAttackState = 'fireball';
+        this.currentAttackState = 'pinkFire';
         this.initAttackHero(img);
 
         this.isAtack = false;

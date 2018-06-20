@@ -6,48 +6,54 @@ export default class Tasks {
             "mathTask": new MathTask(1, 10),
         };
         this.task = document.getElementById('task');
+        this.taskText = document.getElementById('task-text');
+        this.condition = document.getElementById('task-condition');
         this.taskAnswer = document.getElementById('task-answer');
         this.acceptTaskButton = document.getElementById('accept-task');
 
         this.lostScreen = document.getElementById('lost-screen');
         this.wonScreen = document.getElementById('won-screen');
 
-        this.init(this.allTasks[id]);
-        this.setCheckResult(hero, enemy);
+        this.init(this.allTasks[id], hero, enemy);
+
     }
-    init(currentTask) {
-        this.taskText = document.createElement('div');
+    init(currentTask, hero, enemy) {
         this.taskText.innerHTML =  currentTask.text;
-        this.condition = document.createElement('div');
         this.condition.innerHTML = currentTask.condition;      
         this.result = currentTask.result;
-        this.task.appendChild(this.taskText);
-        this.task.appendChild(this.condition);
         this.task.style.display = 'block';
+
+        this.handleClick = this.checkResult.bind(this, hero, enemy);
+        
+        this.acceptTaskButton.addEventListener('click', this.handleClick);
     }
 
-    setCheckResult(hero, enemy) { 
-        this.accept = this.acceptTaskButton.addEventListener('click', () => {
-            if (+this.taskAnswer.value === this.result) {
-                this.task.style.display = 'none';
-                this.wonScreen.style.display = 'block';
-                setTimeout(() => {
-                    this.wonScreen.style.display = 'none';
+    checkResult(hero, enemy) { 
+        if (+this.taskAnswer.value === this.result) {
+            this.task.style.display = 'none';
+            this.wonScreen.style.display = 'block';
+            setTimeout(() => {
+                this.wonScreen.style.display = 'none';
 
-                    hero.atack(enemy.triggerHurt.bind(enemy));
+                hero.atack(enemy.triggerHurt.bind(enemy));
 
-                }, 2000);
-            } else {
-                this.task.style.display = 'none';
-                this.lostScreen.style.display = 'block';
-                setTimeout(() => {
-                    this.lostScreen.style.display = 'none';
-                    
-                    enemy.atack(hero.triggerHurt.bind(hero));
+            }, 2000);
+        } else {
+            this.task.style.display = 'none';
+            this.lostScreen.style.display = 'block';
+            setTimeout(() => {
+                this.lostScreen.style.display = 'none';
+                
+                enemy.atack(hero.triggerHurt.bind(hero));
 
-                }, 2000);
-            } 
-        });
-               
+            }, 2000);
+        }
+
+        this.taskText.innerHTML = '';
+        this.condition.innerHTML = ''; 
+        this.taskAnswer.value = '';
+          
+        this.acceptTaskButton.removeEventListener('click', this.handleClick);
     }
+
 }

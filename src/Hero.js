@@ -1,14 +1,16 @@
 import Sprite from './Sprite';
 import AttackHero from './AttackHero';
+import Health from './Health';
 
 export default class Hero {
-    constructor(ctx, position, imgs) {
+    constructor(ctx, position, imgs, firstName, lastName) {
         this.ctx = ctx;
         this.position = position;
-
         this.heroSprites = {};
         this.currentState = 'idle';
         this.initHero(imgs);
+
+        this.heroHealth = new Health(ctx, [15, 15], `${firstName}`, `${lastName}`);
     }
 
     initHero(imgs) {
@@ -38,15 +40,18 @@ export default class Hero {
         this.changeCurrrentHeroSprite('hurt');
         setTimeout(() => {
             this.changeCurrrentHeroSprite('idle');
+            this.heroHealth.triggerHealthReduce();
         }, 400);
     }
 
     update(diff) {
+        this.heroHealth.update(diff);
         this.heroSprites[this.currentState].update(diff);
         this.atackHero.update(diff);
     }
 
     render() {
+        this.heroHealth.render();
         this.heroSprites[this.currentState].render(this.position);
         this.atackHero.render();
     }

@@ -19,8 +19,9 @@ export default class Game {
         this.initGame();
 
         this.stateSubscrioption = document.addEventListener('updateState', (e) => {
-            if (e.detail.images) {
+            if (e.detail.images && e.detail.images && e.detail.images) {
                 this.images = e.detail.images;
+                this.name = e.detail.lastName + ' ' +e.detail.firstName;
                 this.createSprites();
             }
         });
@@ -37,6 +38,7 @@ export default class Game {
         });
 
         this.pickMagic.addEventListener('click', (e) => {
+            // debugger;
             this.Task = new Tasks(
                 e.srcElement.id,
                 this.Hero, 
@@ -61,7 +63,7 @@ export default class Game {
     }
 
     createSprites() {
-        this.Hero = new Hero(this.ctx, [180, 355], this.images);
+        this.Hero = new Hero(this.ctx, [180, 355], this.images, this.name);
         this.Enemy = new Enemy(this.ctx, this.images);
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];

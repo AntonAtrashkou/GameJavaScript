@@ -1,6 +1,9 @@
 import Sprite from './Sprite';
 import RandomingEnemy from './RandomingEnemy';
 import AttackEnemy from './AttackEnemy';
+import Health from './Health';
+import EnemyName from './EnemyName';
+
 
 export default class Enemy {
     constructor(ctx, imgs) {
@@ -22,6 +25,8 @@ export default class Enemy {
             lefrArm: [555, 265],
             head: [495, 215],
         };
+        this.enemyName = new EnemyName;
+        this.enemyHealth = new Health(ctx, [635, 15], this.enemyName.fullName);
 
         this.randomingEnemy = new RandomingEnemy(0, 2);
         this.init();
@@ -63,15 +68,18 @@ export default class Enemy {
         this.changeCurrrentEnemySprite('hurt');
         setTimeout(() => {
             this.changeCurrrentEnemySprite('idle');
+            this.enemyHealth.triggerHealthReduce();
         }, 400);
     }
 
     update(diff) {
+        this.enemyHealth.update(diff);
         Object.values(this.sprites[this.currentState]).forEach(value => value.update(diff));
         this.atackEnemy.update(diff);
     }
 
     render() {
+        this.enemyHealth.render();
         Object.entries(this.sprites[this.currentState]).forEach(entrie => {
             entrie[1].render(this.positions[entrie[0]]);
         });
