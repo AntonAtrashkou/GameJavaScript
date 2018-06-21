@@ -9,7 +9,7 @@ export default class AttackHero {
         this.currentAttackState = 'pinkFire';
         this.initAttackHero(img);
 
-        this.isAtack = false;
+        this.isAttack = false;
     }
 
     initAttackHero(img) {
@@ -32,24 +32,25 @@ export default class AttackHero {
         this.currentAttackState = key;
     }
 
-    triggerAtack(callback) {
-        this.isAtack = true;
+    triggerAttack(callback, attack) {
+        this.isAttack = true;
+        this.changeCurrrentAttackHero(attack)
         setTimeout(() => {
             callback();
-            this.isAtack = false;
+            this.isAttack = false;
             this.position = [310, 400];
         }, 700);
     }
 
     update(diff) {
-        if (this.isAtack) {
+        if (this.isAttack) {
             this.heroAttackSprites[this.currentAttackState].update(diff);
             this.changeCurrrentAttackposition()
         }
     }
 
     render() {
-        if (this.isAtack) {
+        if (this.isAttack) {
             this.heroAttackSprites[this.currentAttackState].render(this.position);
         }
     }

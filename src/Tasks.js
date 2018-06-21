@@ -5,12 +5,12 @@ export default class Tasks {
         this.allTasks = {
             "mathTask": new MathTask(1, 10),
         };
+
         this.task = document.getElementById('task');
         this.taskText = document.getElementById('task-text');
         this.condition = document.getElementById('task-condition');
         this.taskAnswer = document.getElementById('task-answer');
         this.acceptTaskButton = document.getElementById('accept-task');
-
         this.lostScreen = document.getElementById('lost-screen');
         this.wonScreen = document.getElementById('won-screen');
 
@@ -21,6 +21,7 @@ export default class Tasks {
         this.taskText.innerHTML =  currentTask.text;
         this.condition.innerHTML = currentTask.condition;      
         this.result = currentTask.result;
+        this.heroAttack = currentTask.attack;
         this.task.style.display = 'block';
 
         this.handleClick = this.checkResult.bind(this, hero, enemy);
@@ -35,7 +36,7 @@ export default class Tasks {
             setTimeout(() => {
                 this.wonScreen.style.display = 'none';
 
-                hero.atack(enemy.triggerHurt.bind(enemy));
+                hero.attack(enemy.triggerHurt.bind(enemy), this.heroAttack);
 
             }, 2000);
         } else {
@@ -44,7 +45,7 @@ export default class Tasks {
             setTimeout(() => {
                 this.lostScreen.style.display = 'none';
                 
-                enemy.atack(hero.triggerHurt.bind(hero));
+                enemy.attack(hero.triggerHurt.bind(hero));
 
             }, 2000);
         }

@@ -29,26 +29,27 @@ export default class Game {
     
     initGame() {
         this.startButton = document.getElementById('start');
-        this.atackButton = document.getElementById('atack');
+        this.attackButton = document.getElementById('attack');
 
         this.pickMagic = document.getElementById('pickMagic');
 
-        this.atackSubscription = this.atackButton.addEventListener('click', () => {
+        this.attackSubscription = this.attackButton.addEventListener('click', () => {
             this.pickMagic.style.display = 'flex';        
         });
 
         this.pickMagic.addEventListener('click', (e) => {
-            // debugger;
-            this.Task = new Tasks(
-                e.srcElement.id,
-                this.Hero, 
-                this.Enemy,
-            );
+            if (e.target.tagName === 'BUTTON') {
+                this.Task = new Tasks(
+                    e.srcElement.id,
+                    this.Hero, 
+                    this.Enemy,
+                );
+            }    
         });
 
         this.startButton.addEventListener('click', () => {
             this.start = Date.now();
-            document.getElementById('atack').style.display = 'block';        
+            document.getElementById('attack').style.display = 'block';        
             this.mainLoop();
         });
     }

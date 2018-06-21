@@ -19,19 +19,19 @@ export default class Hero {
         this.heroSprites['idle'] = new Sprite(this.ctx, 5, 190, 110, heroImage, 30, [0,1,2,3,4,5,6], true);
         this.heroSprites['die'] = new Sprite(this.ctx, 200, 190, 110, heroImage, 16, [0,1,2,3,4,5,6], false);
         this.heroSprites['hurt'] = new Sprite(this.ctx, 400, 190, 110, heroImage, 12, [0,1,2,3,4,5,6], false);
-        this.heroSprites['atack'] = new Sprite(this.ctx, 800, 190, 110, heroImage, 12, [0,1,2,3,4,5,6,7], false);
+        this.heroSprites['attack'] = new Sprite(this.ctx, 800, 190, 110, heroImage, 12, [0,1,2,3,4,5,6,7], false);
 
-        this.atackHero = new AttackHero(this.ctx, imgs['spriteEffectsImg']);
+        this.attackHero = new AttackHero(this.ctx, imgs['spriteEffectsImg']);
     }
 
     changeCurrrentHeroSprite(key) {
         this.currentState = key;
     }
 
-    atack(callback) {
-        this.changeCurrrentHeroSprite('atack');
+    attack(callback, attack) {
+        this.changeCurrrentHeroSprite('attack');
         setTimeout(() => {
-            this.atackHero.triggerAtack(callback);
+            this.attackHero.triggerAttack(callback, attack);
             this.changeCurrrentHeroSprite('idle');
         }, 500);
     }
@@ -47,12 +47,12 @@ export default class Hero {
     update(diff) {
         this.heroHealth.update(diff);
         this.heroSprites[this.currentState].update(diff);
-        this.atackHero.update(diff);
+        this.attackHero.update(diff);
     }
 
     render() {
         this.heroHealth.render();
         this.heroSprites[this.currentState].render(this.position);
-        this.atackHero.render();
+        this.attackHero.render();
     }
 }

@@ -3,19 +3,19 @@ import Sprite from './Sprite';
 export default class AttackEnemy {
     constructor(ctx, img) {
         this.ctx = ctx;
-        this.position = [300, 300];
+        this.position = [300, 380];
 
         this.enemyAttackSprites = {};
         this.currentAttackState = 'slash ';
         this.initAttackEnemy(img);
 
-        this.isAtack = false;
+        this.isAttack = false;
     }
     
     initAttackEnemy(img) {
         const enemyAttackImage = new Image();
         enemyAttackImage.src = img;
-        this.enemyAttackSprites['slash'] = new Sprite(this.ctx, 3700, 245, 150, enemyAttackImage, 10, [0], true);       
+        this.enemyAttackSprites['slash'] = new Sprite(this.ctx, 3800, 200, 150, enemyAttackImage, 15, [0,1,2,3,4,5,6,7,8], true);       
     }
 
     changeCurrrentAttackposition() {
@@ -26,24 +26,24 @@ export default class AttackEnemy {
         this.currentAttackState = key;
     }
 
-    triggerAtack(callback) {
-        this.isAtack = true;
+    triggerAttack(callback) {
+        this.isAttack = true;
         setTimeout(() => {
             callback();
-            this.isAtack = false;
-            this.position = [300, 300];
+            this.isAttack = false;
+            this.position = [300, 380];
         }, 600);
     }
 
     update(diff) {
-        if (this.isAtack) {
+        if (this.isAttack) {
             this.enemyAttackSprites['slash'].update(diff);
             this.changeCurrrentAttackposition()
         }
     }
 
     render() {
-        if (this.isAtack) {
+        if (this.isAttack) {
             this.enemyAttackSprites['slash'].render(this.position);
         }
     }

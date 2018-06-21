@@ -1,7 +1,8 @@
 body {
     display: flex;
     justify-content: center;
-    /* background-color: violet; */
+    align-items: center;
+    background-color: rgb(242, 182, 130);
     height: 100%; 
 }
 
@@ -9,4 +10,3 @@ main {
     display: flex;
     justify-content: center;
 }
-

@@ -16,6 +16,12 @@ export default class Health {
         this.makeReduce = true;
     }
 
+    die() {
+        if (!this.health){
+
+        }
+    }
+
     render() {
         this.ctx.fillStyle = "rgb(0, 0, 0)";
         this.ctx.fillRect(this.position[0] - 5, this.position[1] - 5, 260, 85);
@@ -27,18 +33,21 @@ export default class Health {
         this.ctx.fillRect(this.position[0], this.position[1], this.health, 40);
         this.ctx.fillStyle = "rgb(0, 0, 0)";
         this.ctx.font = "20px cursive, sans-serif"
-        this.ctx.fillText(`${this.name }`, this.position[0] + 10, this.position[1] + 67);
+        this.ctx.fillText(`${this.name}`, this.position[0] + 10, this.position[1] + 67);
+        this.ctx.font = "20px cursive, sans-serif"
+        this.ctx.fillText(`${this.health}`, this.position[0] + 10, this.position[1] + 27);
     }
 
     update(diff) {
         if (this.makeReduce) {
             this.duration += this.speed * diff;
             this.reduce = this.reduce - Math.round(this.duration);
+            // console.log(this.reduce);
             this.health = this.health - Math.round(this.duration);
             if (this.reduce <= 0) {
                 this.makeReduce = false;
                 this.reduce = 50;
-                console.log(this.health);
+                // console.log(this.health);
             }
         }
     }

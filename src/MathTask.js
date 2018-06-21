@@ -1,12 +1,13 @@
 export default class MathTask {
     constructor(min, max) {
+        this.attack = 'pinkFire';
         this.operators =['+', '-', '*', '/'];
         this.firstOperand = this.generateRandomInteger(min, max);
         this.secondOperand = this.generateRandomInteger(min, max);
         this.generateOperator();
         this.generateResult(this.operator);
-        this.text = 'wqeqweqweqweqwe';
         this.condition = `${this.firstOperand} ${this.operator} ${this.secondOperand }`;
+        this.text = 'wqeqweqweqweqwe';
     }
 
     generateRandomInteger (min, max) {
