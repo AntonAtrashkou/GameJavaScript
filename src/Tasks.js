@@ -13,6 +13,7 @@ export default class Tasks {
         this.acceptTaskButton = document.getElementById('accept-task');
         this.lostScreen = document.getElementById('lost-screen');
         this.wonScreen = document.getElementById('won-screen');
+        this.pickMagic = document.getElementById('pickMagic');
 
         this.init(this.allTasks[id], hero, enemy);
 
@@ -21,8 +22,9 @@ export default class Tasks {
         this.taskText.innerHTML =  currentTask.text;
         this.condition.innerHTML = currentTask.condition;      
         this.result = currentTask.result;
-        this.heroAttack = currentTask.attack;
-        this.task.style.display = 'block';
+        this.heroAttackKey = currentTask.attackKey;
+        this.task.style.display = 'flex';
+        this.pickMagic.style.display = 'none';
 
         this.handleClick = this.checkResult.bind(this, hero, enemy);
         
@@ -36,9 +38,9 @@ export default class Tasks {
             setTimeout(() => {
                 this.wonScreen.style.display = 'none';
 
-                hero.attack(enemy.triggerHurt.bind(enemy), this.heroAttack);
+                hero.attack(enemy.triggerHurt.bind(enemy), this.heroAttackKey);
 
-            }, 2000);
+            }, 500);
         } else {
             this.task.style.display = 'none';
             this.lostScreen.style.display = 'block';
@@ -47,7 +49,7 @@ export default class Tasks {
                 
                 enemy.attack(hero.triggerHurt.bind(hero));
 
-            }, 2000);
+            }, 500);
         }
 
         this.taskText.innerHTML = '';

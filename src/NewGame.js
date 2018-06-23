@@ -13,6 +13,7 @@ export default class NewGame {
     constructor (forward) {
         this.forward = forward;
         this.loader = document.getElementById('loader');
+        this.wrapper = document.getElementById('wrapper-logo');
         this.images = {};
 
         this.stateSubscrioption = document.addEventListener('updateState', (e) => {
@@ -46,6 +47,7 @@ export default class NewGame {
             .then(() => {
                 setTimeout(() => {
                     this.loader.style.display = 'none';
+                    this.wrapper.style.display = 'none'; 
                     this.forward({ images: this.images, preload: false });
                 }, 1000);
             })    

@@ -13,11 +13,10 @@ export default class Game {
         this.canvas.width = 900;
         this.canvas.height = 506;
         this.ctx = canvas.getContext('2d');
-
+        
         this.mainLoop = this.mainLoop.bind(this);
 
         this.initGame();
-
         this.stateSubscrioption = document.addEventListener('updateState', (e) => {
             if (e.detail.images && e.detail.images && e.detail.images) {
                 this.images = e.detail.images;
@@ -28,12 +27,11 @@ export default class Game {
     };
     
     initGame() {
-        this.startButton = document.getElementById('start');
-        this.attackButton = document.getElementById('attack');
-
         this.pickMagic = document.getElementById('pickMagic');
+        this.nextEnemy = document.getElementById('nextEnemy');
+        this.attackBot = document.getElementById('attack');
 
-        this.attackSubscription = this.attackButton.addEventListener('click', () => {
+        document.getElementById('attack').addEventListener('click', () => {
             this.pickMagic.style.display = 'flex';        
         });
 
@@ -47,11 +45,20 @@ export default class Game {
             }    
         });
 
-        this.startButton.addEventListener('click', () => {
+        document.getElementById('start').addEventListener('click', () => {
             this.start = Date.now();
-            document.getElementById('attack').style.display = 'block';        
+            this.attackBot.style.display = 'block';        
             this.mainLoop();
         });
+
+        this.nextEnemy.addEventListener('click', () => {
+
+            this.Enemy = new Enemy(this.ctx, this.images);
+            setTimeout(() => {
+                document.getElementById('nextEnemy').style.display = 'none';
+                this.attackBot.style.display = 'block';  
+            }, 100);
+        })
     }
 
     mainLoop() {
@@ -64,10 +71,11 @@ export default class Game {
     }
 
     createSprites() {
-        this.Hero = new Hero(this.ctx, [180, 355], this.images, this.name);
+        this.Hero = new Hero(this.ctx, [190, 355], this.images, this.name);
         this.Enemy = new Enemy(this.ctx, this.images);
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];
+
         this.background = new Background(
             new Sprite(this.ctx, 0, 900, 506, backgroundImage, 1, [0]),
             [0, 0],

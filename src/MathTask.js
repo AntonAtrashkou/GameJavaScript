@@ -1,6 +1,6 @@
 export default class MathTask {
     constructor(min, max) {
-        this.attack = 'pinkFire';
+        this.attackKey = 'pinkFire';
         this.operators =['+', '-', '*', '/'];
         this.firstOperand = this.generateRandomInteger(min, max);
         this.secondOperand = this.generateRandomInteger(min, max);

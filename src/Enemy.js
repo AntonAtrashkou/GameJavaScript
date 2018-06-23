@@ -15,16 +15,17 @@ export default class Enemy {
         };
         this.sprites = {};
         this.currentState = 'idle';
-
+        this.isDead = false;
         this.positions = {
-            rightLeg: [485, 325],
-            leftLeg: [520, 325],
-            rightArm: [410, 275],
-            body: [500, 255],
-            lefrArm: [555, 265],
-            head: [495, 215],
+            rightLeg: [560, 325],
+            leftLeg: [595, 325],
+            rightArm: [485, 275],
+            body: [575, 255],
+            lefrArm: [630, 265],
+            head: [570, 215],
         };
-        this.enemyName = new EnemyName;
+
+        this.enemyName = new EnemyName();
         this.enemyHealth = new Health(ctx, [635, 15], this.enemyName.fullName);
 
         this.randomingEnemy = new RandomingEnemy(0, 2);
@@ -65,16 +66,29 @@ export default class Enemy {
 
     triggerHurt() {
         this.changeCurrrentEnemySprite('hurt');
+        this.enemyHealth.triggerHealthReduce();
         setTimeout(() => {
             this.changeCurrrentEnemySprite('idle');
-            this.enemyHealth.triggerHealthReduce();
         }, 400);
+    }
+
+    triggerDie() {
+        this.changeCurrrentEnemySprite('die');
+        this.isDead = true;
     }
 
     update(diff) {
         this.attackEnemy.update(diff);
         this.enemyHealth.update(diff);
         Object.values(this.sprites[this.currentState]).forEach(value => value.update(diff));
+
+        if(this.enemyHealth.health <= 0 && !this.isDead) {
+            this.triggerDie();
+            setTimeout(() => {
+                document.getElementById('nextEnemy').style.display = "block";
+                document.getElementById('attack').style.display = "none";
+            }, 1000);
+        }
     }
 
     render() {

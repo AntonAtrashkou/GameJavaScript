@@ -3,7 +3,7 @@ import Sprite from './Sprite';
 export default class AttackEnemy {
     constructor(ctx, img) {
         this.ctx = ctx;
-        this.position = [300, 380];
+        this.position = [340, 380];
 
         this.enemyAttackSprites = {};
         this.currentAttackState = 'slash ';

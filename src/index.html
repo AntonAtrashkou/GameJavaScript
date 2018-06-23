@@ -4,79 +4,97 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Battle</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
+  <div id="wrapper-logo" class="wrapper">
     <section id="login" class="login">
       <h2>Welcome Guest!</h2>
-      <p>Please enter your First name, Last Name and email here</p>
       <form action="#">
           <div>
-            <label>Name</label>
-            <input id="firstName" type="text" placeholder="your FirstName" required>
+            <label>First Name</label>
+            <input id="firstName" type="text" placeholder="your First Name" required>
           </div>
           <div>
-            <label>LastName</label>
-            <input id="lastName" type="text" placeholder="your LastName" required>
+            <label>Last Name</label>
+            <input id="lastName" type="text" placeholder="your Last Name" required>
           </div>
           <div>
             <label>Email</label>
             <input id="email" type="email" placeholder="your email" required>
           </div>
           <div>
-            <button id="continue">Continue</button>
+            <button id="continue" class="login-but">Continue</button>
           </div>
       </form>
     </section>
     <section id="newGame" class="newGame">
       <span id="loader" class="loader"></span>
     </section>
-    <section id="game" class="game">
-      <button id="start">start</button>
-      <button id="attack" class="attack">Attack</button>
-      <div id="pickMagic" class="pickMagic">
-        <ul>
-          <li>
-            <div>
-              <button id = "mathTask" class="actionBarButton">MathTask</button>
-            </div>
-          </li>
-          <li>
-            <div>
-              <button id = "2Task" class="actionBarButton">Second</button>
-            </div>
-          </li>
-          <li>
-            <div>
-              <button id = "3Task" class="actionBarButton">Third</button>
-            </div>
-          </li>
-          <li>
-            <div>
-              <button id = "4Task" class="actionBarButton">Fourth</button>
-            </div>
-          </li>
-        </ul>
+  </div>
+  <section id="game" class="game">
+    <div>
+      <ul class="game-nav">
+        <li>
+          <button id="start" class="game-nav-bot">Start</button>
+        </li>
+        <li>
+          <button id="game-score" class="game-nav-bot">Score</button>
+        </li> 
+        <li>
+          <button id="start" class="game-nav-bot">About</button>
+        </li>
+      </ul>
+    </div>
+    <div id="pickMagic" class="pickMagic">
+        <button id = "mathTask" class="magic-but">MathTask</button>
+        <button id = "2Task" class="magic-but">Second</button>
+        <button id = "3Task" class="magic-but">Third</button>
+        <button id = "4Task" class="magic-but">Fourth</button>
+        <button id = "5Task" class="magic-but">Fourth</button>
+        <button id = "6Task" class="magic-but">Fourth</button>
+        <button id = "7Task" class="magic-but">Fourth</button>
+        <button id = "8Task" class="magic-but">Fourth</button>
+        <button id = "9Task" class="magic-but">Fourth</button>
+        <button id = "10Task" class="magic-but">Fourth</button>  
+        <button id = "11Task" class="magic-but">Fourth</button>  
       </div>
-      <canvas id="canvas" class="canvas"></canvas>
-      <div id="task" class="task">
-          <div id="task-text"></div>
-          <div id="task-condition"></div>
-          <input id="task-answer" type="text" placeholder="Answer" required>
-          <button id="accept-task" class="button">Reply!</button>
-      </div>
-      <div id="lost-screen" class="lost-screen">
-          <span>lost</span>
-      </div>
-      <div id="won-screen" class="won-screen">
-        <span>won</span>
-      </div>
-    </section>
-    <section id="score" class="score">
-        <span>score</span>
-    </section>
+    </div>
 
+    <canvas id="canvas" class="canvas"></canvas>
+
+    <button id="attack" class="attack">Attack</button>
+    <button id="nextEnemy" class="nextEnemy">Next<br>Enemy</button>
+    <div id="task" class="task">
+        <div id="task-text" class="task-text"></div>
+        <div id="task-condition" class="task-condition"></div>
+        <input id="task-answer" class="task-answer" type="text" placeholder="Answer" required>
+        <button id="accept-task" class="task-but">Reply!</button>
+    </div>
+    <div id="lost-screen" class="lost-screen">
+        <span>lost</span>
+    </div>
+    <div id="won-screen" class="won-screen">
+      <span>won</span>
+    </div>
+  </section>
+  <section id="score" class="score">
+    <div>
+        <h2>Your score</h2>
+        <div id="totalScore"></div>
+    </div>
+      <h2>Top 5 players</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="scoreTable"></tbody>
+      </table>
+    <button id = "toGame" class="magic-but">New Game</button>  
+  </section>
 </body>
 </html>

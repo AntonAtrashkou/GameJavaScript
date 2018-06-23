@@ -25,16 +25,16 @@ export default class AttackHero {
         this.heroAttackSprites['blueDrop'] = new Sprite(this.ctx, 560, 80, 40, heroAttackImage, 10, [0], true);        
     }
     changeCurrrentAttackposition() {
-        this.position[0] = this.position[0] + 3;
+        this.position[0] = this.position[0] + 4;
     }
 
     changeCurrrentAttackHero(key) {
         this.currentAttackState = key;
     }
 
-    triggerAttack(callback, attack) {
+    triggerAttack(callback, attackKey) {
         this.isAttack = true;
-        this.changeCurrrentAttackHero(attack)
+        this.changeCurrrentAttackHero(attackKey)
         setTimeout(() => {
             callback();
             this.isAttack = false;

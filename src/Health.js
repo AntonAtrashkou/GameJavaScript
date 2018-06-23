@@ -4,7 +4,7 @@ export default class Health {
         this.position = position;
         this.name = name;
 
-        this.health = 250;
+        this.health = 50;
         this.speed = 1;
 
         this.reduce = 50;
@@ -14,12 +14,6 @@ export default class Health {
 
     triggerHealthReduce() {
         this.makeReduce = true;
-    }
-
-    die() {
-        if (!this.health){
-
-        }
     }
 
     render() {
@@ -42,12 +36,11 @@ export default class Health {
         if (this.makeReduce) {
             this.duration += this.speed * diff;
             this.reduce = this.reduce - Math.round(this.duration);
-            // console.log(this.reduce);
             this.health = this.health - Math.round(this.duration);
             if (this.reduce <= 0) {
                 this.makeReduce = false;
+                this.duration = 0;
                 this.reduce = 50;
-                // console.log(this.health);
             }
         }
     }
