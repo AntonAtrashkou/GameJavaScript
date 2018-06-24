@@ -1,50 +1,37 @@
 .game {
     display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-wrap: wrap;
     position: relative;
     font-family: "Open Sans",sans-serif;
 }
 
-.game ul  {
-    list-style-type: none;
-}
-
-
 .game-startScreen {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .game-activeScreen {
     display: none;
 }
 
-.game-nav {
-    display: flex;
-    justify-content: space-evenly;
-    width: 915px;
-    margin: 4em 0 3em 0;
-    padding: 0;
-}
-
-.game-nav-bot {
-    background-color: rgba(0, 0, 0, 0.4);
+.game-start-bot {
+    background-color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 5px 100px rgba(243, 189, 12, 0.9);
-    width: 15em;
-    margin: 4em 0 4em 0;
-    padding: 1.1em;
+    width: 10em;
+    margin: 5em auto;
+    padding: 1em;
+    font-size: 1.5em;
     font-weight: 500;
     color: rgb(214, 201, 21);
-    border: .2em solid rgb(214, 201, 21);
+    border: .1em solid rgb(214, 201, 21);
     border-radius: .3em;
 }
 
-.game-nav-bot:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+.game-start-bot:hover {
+    background-color: rgba(0, 0, 0, 0.9);
     box-shadow: 0 5px 60px rgba(243, 189, 12, 0.9);
     color: rgb(239, 225, 23);
-    border: .2em solid rgb(239, 225, 23);
+    border: .1em solid rgb(239, 225, 23);
 }
 
 .game-rules {
@@ -52,6 +39,7 @@
     padding: 1em;
     margin: 0 auto;
     font-size: 2em;
+    text-align: center;
     width: 25em;
     height: 13em;
     color: rgba(214, 201, 21, 0.9);
@@ -73,7 +61,7 @@
     /* display: none; */
     width: 6em;
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%,-50%);
     background-color: rgb(128, 14, 14);
@@ -99,7 +87,7 @@
     align-items: center;
     flex-wrap: wrap;
     position: absolute;
-    top: 68%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%,-50%);
     background-color: #f4cbad;
@@ -152,7 +140,7 @@
     width: 25em;
     height: 20em;
     border: .5em solid rgb(86, 77, 101);
-    top: 69%;
+    top: 71%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -230,7 +218,7 @@
     background-color: red;
     width: 900px;
     height: 506px;
-    top: 62.6%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%,-50%);
     opacity: 0.2;
@@ -243,7 +231,7 @@
     background-color: green;
     width: 900px;
     height: 506px;
-    top: 62.6%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%,-50%);
     opacity: 0.2;

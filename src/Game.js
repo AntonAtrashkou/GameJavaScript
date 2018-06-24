@@ -1,4 +1,5 @@
 import './styles/game.css';
+import './styles/score.css';
 import Background from './Background';
 import Enemy from './Enemy';
 import Hero from './Hero';
@@ -30,14 +31,14 @@ export default class Game {
     initGame() {
         this.pickMagic = document.getElementById('pickMagic');
         this.nextEnemy = document.getElementById('nextEnemy');
-
-        document.getElementById('attack').addEventListener('click', () => {
+        this.attackBot = document.getElementById('attack');
+        this.attackBot.addEventListener('click', () => {
             this.pickMagic.style.display = 'flex';        
         });
 
         document.getElementById('start').addEventListener('click', () => {
             document.getElementById('game-startScreen').style.display = 'none';
-            document.getElementById('game-activeScreen').style.display = 'block'      
+            document.getElementById('game-activeScreen').style.display = 'flex';   
             this.start = Date.now();
             this.mainLoop();
         });

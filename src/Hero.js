@@ -61,8 +61,9 @@ export default class Hero {
         if(this.heroHealth.health <= 0 && !this.isDead) {
             this.triggerDie();
             setTimeout(() => {
-                document.getElementById('game-activeScreen').style.display = "none";
-                document.getElementById('game-startScreen').style.display = 'block';
+                document.getElementById('totalScore').innerHTML = `${this.score}`;
+                // document.getElementById('game-activeScreen').style.display = "none";
+                // document.getElementById('game-startScreen').style.display = 'flex';
                 document.getElementById('score').style.display = "flex";
             }, 1000);
         }
