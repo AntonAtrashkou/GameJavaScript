@@ -11,9 +11,18 @@
     list-style-type: none;
 }
 
+
+.game-startScreen {
+    display: block;
+}
+
+.game-activeScreen {
+    display: none;
+}
+
 .game-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 915px;
     margin: 4em 0 3em 0;
     padding: 0;
@@ -21,12 +30,13 @@
 
 .game-nav-bot {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 5px 60px rgba(226, 51, 3, 0.9);
+    box-shadow: 0 5px 100px rgba(243, 189, 12, 0.9);
     width: 15em;
-    margin-top: .5em;
+    margin: 4em 0 4em 0;
     padding: 1.1em;
+    font-weight: 500;
     color: rgb(214, 201, 21);
-    border: 2px solid rgb(214, 201, 21);
+    border: .2em solid rgb(214, 201, 21);
     border-radius: .3em;
 }
 
@@ -34,19 +44,33 @@
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 5px 60px rgba(243, 189, 12, 0.9);
     color: rgb(239, 225, 23);
-    border: 1px solid rgb(239, 225, 23);
+    border: .2em solid rgb(239, 225, 23);
+}
+
+.game-rules {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1em;
+    margin: 0 auto;
+    font-size: 2em;
+    width: 25em;
+    height: 13em;
+    color: rgba(214, 201, 21, 0.9);
+    box-shadow: 0 0 120px rgb(214, 201, 21);
+    border: .1em solid rgba(214, 201, 21, 0.8);
 }
 
 .canvas {
-    background-image: url('../img/MainBg.png');
+    /* display: none; */
+    margin-top: 14em;
+    /* background-image: url('../img/MainBg.png'); */
     background-size: cover;
-    box-shadow: 0 0 100px rgba(0,0,0,0.6);
-    border: .5em solid rgb(25, 20, 7);
+    box-shadow: 0 0 150px rgba(0,0,0,0.6);
+    border: .2em solid rgb(25, 20, 7);
     border-radius: .8em;
 }
 
 .attack {
-    display: none;
+    /* display: none; */
     width: 6em;
     position: absolute;
     top: 50%;

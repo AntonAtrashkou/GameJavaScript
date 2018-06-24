@@ -84,9 +84,9 @@ export default class Enemy {
 
         if(this.enemyHealth.health <= 0 && !this.isDead) {
             this.triggerDie();
+            document.getElementById('attack').style.display = "none";
             setTimeout(() => {
                 document.getElementById('nextEnemy').style.display = "block";
-                document.getElementById('attack').style.display = "none";
             }, 1000);
         }
     }

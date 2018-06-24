@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Battle</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="img/titleImg1.png">
 </head>
 <body>
   <div id="wrapper-logo" class="wrapper">
@@ -34,20 +34,23 @@
     </section>
   </div>
   <section id="game" class="game">
-    <div>
-      <ul class="game-nav">
-        <li>
-          <button id="start" class="game-nav-bot">Start</button>
-        </li>
-        <li>
-          <button id="game-score" class="game-nav-bot">Score</button>
-        </li> 
-        <li>
-          <button id="start" class="game-nav-bot">About</button>
-        </li>
-      </ul>
+    <div id="game-startScreen">
+      <div>
+        <ul class="game-nav">
+          <li>
+            <button id="start" class="game-nav-bot">Start</button>
+          </li>
+          <li>
+            <button id="game-score" class="game-nav-bot">Score</button>
+          </li> 
+        </ul>
+      </div>
+      <div id="game-rules" class="game-rules">
+        Battele is a fighting game in which you must fight against troll using hero and your brain. Push button attack, solve mini tasks to defeat enemies who are trying to kill you. This game is a huge amount of fun and you will find yourself reentering the arena time and time again to beat your personal records and training your brain!
+      </div>
     </div>
-    <div id="pickMagic" class="pickMagic">
+    <div id="game-activeScreen" class="game-activeScreen">
+      <div id="pickMagic" class="pickMagic">
         <button id = "mathTask" class="magic-but">MathTask</button>
         <button id = "2Task" class="magic-but">Second</button>
         <button id = "3Task" class="magic-but">Third</button>
@@ -60,23 +63,23 @@
         <button id = "10Task" class="magic-but">Fourth</button>  
         <button id = "11Task" class="magic-but">Fourth</button>  
       </div>
-    </div>
 
-    <canvas id="canvas" class="canvas"></canvas>
+      <canvas id="canvas" class="canvas"></canvas>
 
-    <button id="attack" class="attack">Attack</button>
-    <button id="nextEnemy" class="nextEnemy">Next<br>Enemy</button>
-    <div id="task" class="task">
-        <div id="task-text" class="task-text"></div>
-        <div id="task-condition" class="task-condition"></div>
-        <input id="task-answer" class="task-answer" type="text" placeholder="Answer" required>
-        <button id="accept-task" class="task-but">Reply!</button>
-    </div>
-    <div id="lost-screen" class="lost-screen">
-        <span>lost</span>
-    </div>
-    <div id="won-screen" class="won-screen">
-      <span>won</span>
+      <button id="attack" class="attack">Attack</button>
+      <button id="nextEnemy" class="nextEnemy">Next<br>Enemy</button>
+      <div id="task" class="task">
+          <div id="task-text" class="task-text"></div>
+          <div id="task-condition" class="task-condition"></div>
+          <input id="task-answer" class="task-answer" type="text" placeholder="Answer" required>
+          <button id="accept-task" class="task-but">Reply!</button>
+      </div>
+      <div id="lost-screen" class="lost-screen">
+          <span>lost</span>
+      </div>
+      <div id="won-screen" class="won-screen">
+        <span>won</span>
+      </div>
     </div>
   </section>
   <section id="score" class="score">

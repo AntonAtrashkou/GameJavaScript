@@ -1,14 +1,18 @@
+*:focus {
+    outline: none;
+}
+
 body {   
-     display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
     background: rgb(133, 2, 11);
     background-image: url('../img/skulls.png');
     /* background-image: url('../img/skulls.png'), linear-gradient(to bottom,  rgb(56, 5, 8), rgb(133, 2, 11)); */
     font-family: "Open Sans",sans-serif;
     font-size: 1em;
 }
+
 .wrapper {
     display: flex;
     flex-direction: column;

@@ -9,6 +9,7 @@ import Sprite from './Sprite';
 export default class Game {
     constructor (forward) {
         this.forward = forward;
+        this.gameRules = document.getElementById('game-rules');
         this.canvas = document.getElementById('canvas');
         this.canvas.width = 900;
         this.canvas.height = 506;
@@ -29,10 +30,16 @@ export default class Game {
     initGame() {
         this.pickMagic = document.getElementById('pickMagic');
         this.nextEnemy = document.getElementById('nextEnemy');
-        this.attackBot = document.getElementById('attack');
 
         document.getElementById('attack').addEventListener('click', () => {
             this.pickMagic.style.display = 'flex';        
+        });
+
+        document.getElementById('start').addEventListener('click', () => {
+            document.getElementById('game-startScreen').style.display = 'none';
+            document.getElementById('game-activeScreen').style.display = 'block'      
+            this.start = Date.now();
+            this.mainLoop();
         });
 
         this.pickMagic.addEventListener('click', (e) => {
@@ -45,14 +52,7 @@ export default class Game {
             }    
         });
 
-        document.getElementById('start').addEventListener('click', () => {
-            this.start = Date.now();
-            this.attackBot.style.display = 'block';        
-            this.mainLoop();
-        });
-
         this.nextEnemy.addEventListener('click', () => {
-
             this.Enemy = new Enemy(this.ctx, this.images);
             setTimeout(() => {
                 document.getElementById('nextEnemy').style.display = 'none';
