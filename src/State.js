@@ -12,6 +12,7 @@ export default class State {
             preload: false,
             records: JSON.parse(localStorage.getItem('records')),
         }
+        window.updateState = this.updateState.bind(this);
     }
 
     initApp() {
@@ -42,6 +43,9 @@ export default class State {
     updateState(newState){
         if (newState) {
             this.state = Object.assign(this.state, newState);
+            this.updateStateEvent = new CustomEvent('updateState', { detail: this.state });
+            document.dispatchEvent(this.updateStateEvent);
+        } else {
             this.updateStateEvent = new CustomEvent('updateState', { detail: this.state });
             document.dispatchEvent(this.updateStateEvent);
         }

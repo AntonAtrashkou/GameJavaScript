@@ -1,11 +1,11 @@
 import MathTask from './MathTask';
 
 export default class Tasks {
-    constructor(id, hero, enemy) {
+    constructor(id, hero, enemy, callback) {
         this.allTasks = {
             "mathTask": new MathTask(1, 10),
         };
-
+        this.disableAtckBtn = callback;
         this.task = document.getElementById('task');
         this.taskText = document.getElementById('task-text');
         this.condition = document.getElementById('task-condition');
@@ -26,7 +26,12 @@ export default class Tasks {
         this.task.style.display = 'flex';
         this.pickMagic.style.display = 'none';
 
-        this.handleClick = this.checkResult.bind(this, hero, enemy);
+        this.temp = (hero, enemy) => {
+            this.disableAtckBtn();
+            this.checkResult.call(this, hero, enemy);
+        }
+        
+        this.handleClick = this.temp.bind(this, hero, enemy);
         
         this.acceptTaskButton.addEventListener('click', this.handleClick);
     }
@@ -37,7 +42,6 @@ export default class Tasks {
             this.wonScreen.style.display = 'block';
             setTimeout(() => {
                 this.wonScreen.style.display = 'none';
-
                 hero.attack(enemy.triggerHurt.bind(enemy), this.heroAttackKey);
 
             }, 500);
@@ -46,7 +50,6 @@ export default class Tasks {
             this.lostScreen.style.display = 'block';
             setTimeout(() => {
                 this.lostScreen.style.display = 'none';
-                
                 enemy.attack(hero.triggerHurt.bind(hero));
 
             }, 500);
@@ -55,7 +58,9 @@ export default class Tasks {
         this.taskText.innerHTML = '';
         this.condition.innerHTML = ''; 
         this.taskAnswer.value = '';
-          
+        
+     
+        
         this.acceptTaskButton.removeEventListener('click', this.handleClick);
     }
 

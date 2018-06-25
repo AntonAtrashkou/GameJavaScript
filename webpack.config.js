@@ -34,7 +34,7 @@ const base = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg)$/,
+        test: /\.(png|svg|jpg|wav)$/,
         loader: 'file-loader?name=./assets/[name].[ext]',
       },
       {

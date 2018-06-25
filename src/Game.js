@@ -3,7 +3,7 @@ import './styles/score.css';
 import Background from './Background';
 import Enemy from './Enemy';
 import Hero from './Hero';
-import AttackHero from './AttackHero';
+// import AttackHero from './AttackHero';
 import Tasks from './Tasks';
 import Sprite from './Sprite';
 
@@ -15,13 +15,15 @@ export default class Game {
         this.canvas.width = 900;
         this.canvas.height = 506;
         this.ctx = canvas.getContext('2d');
-        
+        this.isStart = false;
         this.mainLoop = this.mainLoop.bind(this);
 
         this.initGame();
         this.stateSubscrioption = document.addEventListener('updateState', (e) => {
-            if (e.detail.images && e.detail.images && e.detail.images) {
+            console.log(e.detail);
+            if (e.detail.images) {
                 this.images = e.detail.images;
+                this.sounds = e.detail.sounds;
                 this.name = e.detail.lastName + ' ' +e.detail.firstName;
                 this.createSprites();
             }
@@ -31,8 +33,8 @@ export default class Game {
     initGame() {
         this.pickMagic = document.getElementById('pickMagic');
         this.nextEnemy = document.getElementById('nextEnemy');
-        this.attackBot = document.getElementById('attack');
-        this.attackBot.addEventListener('click', () => {
+        this.attackButt = document.getElementById('attack');
+        this.attackButt.addEventListener('click', () => {
             this.pickMagic.style.display = 'flex';        
         });
 
@@ -40,6 +42,7 @@ export default class Game {
             document.getElementById('game-startScreen').style.display = 'none';
             document.getElementById('game-activeScreen').style.display = 'flex';   
             this.start = Date.now();
+            this.isStart = true;
             this.mainLoop();
         });
 
@@ -49,31 +52,47 @@ export default class Game {
                     e.srcElement.id,
                     this.Hero, 
                     this.Enemy,
+                    this.disableAtckBtn.bind(this),
                 );
-            }    
+            }
         });
 
         this.nextEnemy.addEventListener('click', () => {
             this.Enemy = new Enemy(this.ctx, this.images);
             setTimeout(() => {
                 document.getElementById('nextEnemy').style.display = 'none';
-                this.attackBot.style.display = 'block';  
+                this.attackButt.style.display = 'block';  
             }, 100);
         })
+
+        document.getElementById('toGame').addEventListener('click', () => {
+            window.updateState();
+            document.getElementById('totalScore').innerHTML = "0";
+            document.getElementById('score').style.display = "none";
+        });
+    }
+
+    disableAtckBtn () {
+        this.attackButt.disabled = true;
+        setTimeout(() => {
+            this.attackButt.disabled = false;
+        }, 4000);
     }
 
     mainLoop() {
-        const now = Date.now();
-        const diff = (now - this.start) / 1000;
-        this.updateAll(diff);
-        this.renderAll();
-        this.start = now;
-        requestAnimationFrame(this.mainLoop);
+        if (this.isStart) {
+            const now = Date.now();
+            const diff = (now - this.start) / 1000;
+            this.updateAll(diff);
+            this.renderAll();
+            this.start = now;
+            requestAnimationFrame(this.mainLoop);
+        }
     }
 
     createSprites() {
-        this.Hero = new Hero(this.ctx, [190, 355], this.images, this.name);
-        this.Enemy = new Enemy(this.ctx, this.images);
+        this.Hero = new Hero(this.ctx, [190, 355], this.images, this.name, this.sounds);
+        this.Enemy = new Enemy(this.ctx, this.images, this.sounds);
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];
 

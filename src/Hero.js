@@ -3,17 +3,16 @@ import AttackHero from './AttackHero';
 import Health from './Health';
 
 export default class Hero {
-    constructor(ctx, position, imgs, firstName, lastName) {
+    constructor(ctx, position, imgs, name, sounds) {
         this.isDead = false;
         this.score = 0;
-
+        this.sounds = sounds;
         this.ctx = ctx;
         this.position = position;
         this.heroSprites = {};
         this.currentState = 'idle';
         this.initHero(imgs);
-
-        this.heroHealth = new Health(ctx, [15, 15], `${firstName}`, `${lastName}`);
+        this.heroHealth = new Health(ctx, [15, 15], `${name}`,);
     }
 
     initHero(imgs) {
@@ -25,6 +24,9 @@ export default class Hero {
         this.heroSprites['attack'] = new Sprite(this.ctx, 800, 190, 110, heroImage, 12, [0,1,2,3,4,5,6,7], false);
 
         this.attackHero = new AttackHero(this.ctx, imgs['spriteEffectsImg']);
+
+        this.attackSound = new Audio();
+        this.attackSound.src = this.sounds[0];
     }
 
     changeCurrrentHeroSprite(key) {
@@ -32,6 +34,7 @@ export default class Hero {
     }
 
     attack(callback, attackKey) {
+        this.attackSound.play();
         this.changeCurrrentHeroSprite('attack');
         setTimeout(() => {
             this.score += 10;
@@ -62,8 +65,6 @@ export default class Hero {
             this.triggerDie();
             setTimeout(() => {
                 document.getElementById('totalScore').innerHTML = `${this.score}`;
-                // document.getElementById('game-activeScreen').style.display = "none";
-                // document.getElementById('game-startScreen').style.display = 'flex';
                 document.getElementById('score').style.display = "flex";
             }, 1000);
         }
