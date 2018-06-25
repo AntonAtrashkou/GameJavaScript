@@ -3,10 +3,10 @@ import AttackHero from './AttackHero';
 import Health from './Health';
 
 export default class Hero {
-    constructor(ctx, position, imgs, name, sounds) {
+    constructor(ctx, position, imgs, name,soundPlay) {
         this.isDead = false;
         this.score = 0;
-        this.sounds = sounds;
+        this.soundPlay = soundPlay;
         this.ctx = ctx;
         this.position = position;
         this.heroSprites = {};
@@ -24,22 +24,19 @@ export default class Hero {
         this.heroSprites['attack'] = new Sprite(this.ctx, 800, 190, 110, heroImage, 12, [0,1,2,3,4,5,6,7], false);
 
         this.attackHero = new AttackHero(this.ctx, imgs['spriteEffectsImg']);
-
-        this.attackSound = new Audio();
-        this.attackSound.src = this.sounds[0];
     }
 
     changeCurrrentHeroSprite(key) {
         this.currentState = key;
     }
-
+ 
     attack(callback, attackKey) {
-        this.attackSound.play();
         this.changeCurrrentHeroSprite('attack');
         setTimeout(() => {
             this.score += 10;
             this.attackHero.triggerAttack(callback, attackKey);
             this.changeCurrrentHeroSprite('idle');
+            this.soundPlay('heroAttack', false);
         }, 500);
     }
 
@@ -48,11 +45,13 @@ export default class Hero {
         setTimeout(() => {
             this.changeCurrrentHeroSprite('idle');
             this.heroHealth.triggerHealthReduce();
+            this.soundPlay('heroHurt', false);
         }, 400);
     }
 
     triggerDie() {
         this.changeCurrrentHeroSprite('die');
+        this.soundPlay('heroDead', false);
         this.isDead = true;
     }
 

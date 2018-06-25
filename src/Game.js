@@ -20,7 +20,6 @@ export default class Game {
 
         this.initGame();
         this.stateSubscrioption = document.addEventListener('updateState', (e) => {
-            console.log(e.detail);
             if (e.detail.images) {
                 this.images = e.detail.images;
                 this.sounds = e.detail.sounds;
@@ -39,6 +38,7 @@ export default class Game {
         });
 
         document.getElementById('start').addEventListener('click', () => {
+            this.soundPlay('mainSound', true);
             document.getElementById('game-startScreen').style.display = 'none';
             document.getElementById('game-activeScreen').style.display = 'flex';   
             this.start = Date.now();
@@ -53,12 +53,14 @@ export default class Game {
                     this.Hero, 
                     this.Enemy,
                     this.disableAtckBtn.bind(this),
+                    this.soundPlay.bind(this),
                 );
             }
         });
 
         this.nextEnemy.addEventListener('click', () => {
-            this.Enemy = new Enemy(this.ctx, this.images);
+            this.soundPlay('enemyOK', false);
+            this.Enemy = new Enemy(this.ctx, this.images, this.soundPlay.bind(this));
             setTimeout(() => {
                 document.getElementById('nextEnemy').style.display = 'none';
                 this.attackButt.style.display = 'block';  
@@ -90,9 +92,19 @@ export default class Game {
         }
     }
 
+    soundPlay(sound, repeatSound) {
+        this.sound = new Audio();
+        this.sound.src = this.sounds[sound];
+        this.sound.volume= 0.2;
+        if(repeatSound) {
+            this.sound.loop = true;
+        }
+        this.sound.play();
+    }
+
     createSprites() {
-        this.Hero = new Hero(this.ctx, [190, 355], this.images, this.name, this.sounds);
-        this.Enemy = new Enemy(this.ctx, this.images, this.sounds);
+        this.Hero = new Hero(this.ctx, [190, 355], this.images, this.name, this.soundPlay.bind(this));
+        this.Enemy = new Enemy(this.ctx, this.images, this.soundPlay.bind(this));
         const backgroundImage = new Image();
         backgroundImage.src = this.images['bgdImg'];
 

@@ -5,8 +5,9 @@ import Health from './Health';
 import EnemyName from './EnemyName';
 
 export default class Enemy {
-    constructor(ctx, imgs) {
+    constructor(ctx, imgs, soundPlay) {
         this.ctx = ctx;
+        this.soundPlay = soundPlay;
         this.images = {
             'idle': imgs['spriteTrollStaticImg'],
             'die': imgs['spriteTrollDieImg'],
@@ -61,6 +62,7 @@ export default class Enemy {
         setTimeout(() => {
             this.attackEnemy.triggerAttack(callback, attack);
             this.changeCurrrentEnemySprite('idle');
+            this.soundPlay('cuseMe', false);
         }, 400);
     }
 
@@ -69,11 +71,13 @@ export default class Enemy {
         this.enemyHealth.triggerHealthReduce();
         setTimeout(() => {
             this.changeCurrrentEnemySprite('idle');
+            this.soundPlay('enemyHurt', false);
         }, 400);
     }
 
     triggerDie() {
         this.changeCurrrentEnemySprite('die');
+        this.soundPlay('enemyDead', false);
         this.isDead = true;
     }
 

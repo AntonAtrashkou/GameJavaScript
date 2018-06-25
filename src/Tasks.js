@@ -1,7 +1,8 @@
 import MathTask from './MathTask';
 
 export default class Tasks {
-    constructor(id, hero, enemy, callback) {
+    constructor(id, hero, enemy, callback, soundPlay) {
+        this.soundPlay = soundPlay;
         this.allTasks = {
             "mathTask": new MathTask(1, 10),
         };
@@ -40,6 +41,7 @@ export default class Tasks {
         if (+this.taskAnswer.value === this.result) {
             this.task.style.display = 'none';
             this.wonScreen.style.display = 'block';
+            this.soundPlay('forTheAlliance', false);
             setTimeout(() => {
                 this.wonScreen.style.display = 'none';
                 hero.attack(enemy.triggerHurt.bind(enemy), this.heroAttackKey);
@@ -48,6 +50,7 @@ export default class Tasks {
         } else {
             this.task.style.display = 'none';
             this.lostScreen.style.display = 'block';
+            this.soundPlay('lokTar', false);
             setTimeout(() => {
                 this.lostScreen.style.display = 'none';
                 enemy.attack(hero.triggerHurt.bind(hero));

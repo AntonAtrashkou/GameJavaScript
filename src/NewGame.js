@@ -11,6 +11,18 @@ import './img/spriteEffects.png';
 
 import './sounds/hero/heroAttack.wav';
 import './sounds/hero/heroDead.wav';
+import './sounds/hero/heroHurt.wav';
+import './sounds/hero/forTheAlliance.wav';
+import './sounds/hero/asYouWish.wav';
+import './sounds/enemy/enemyAttack.wav';
+import './sounds/enemy/enemyDead.wav';
+import './sounds/enemy/enemyHurt.wav';
+import './sounds/enemy/lokTar.wav';
+import './sounds/enemy/cuseMe.wav';
+import './sounds/enemy/enemyOK.wav';
+import './sounds/game/mainSound.wav';
+
+
 
 export default class NewGame {
     constructor (forward) {
@@ -30,7 +42,7 @@ export default class NewGame {
     loadAssets() {
         this.loader.style.display = 'block';
         const idsImg = ['bgdImg', 'spriteKnightImg', 'spriteTrollStaticImg', 'spriteTrollAttackImg', 'spriteTrollHurtImg', 'spriteTrollDieImg', 'spriteEffectsImg'];
-        const idsSounds = ['heroAttack', 'heroDead'];
+        const idsSounds = ['heroAttack', 'heroDead', 'heroHurt', 'enemyAttack', 'enemyDead', 'enemyHurt', 'mainSound',  'asYouWish', 'forTheAlliance', 'lokTar', 'cuseMe', 'enemyOK'];
         const promises = [
             fetch('/assets/background.png'),
             fetch('/assets/spriteKnight.png'),
@@ -42,7 +54,17 @@ export default class NewGame {
         ];
         const promiseSounds = [
             fetch('/assets/heroAttack.wav'),
-            fetch('/assets/heroAttack.wav'),
+            fetch('/assets/heroDead.wav'),
+            fetch('/assets/heroHurt.wav'),
+            fetch('/assets/enemyAttack.wav'),
+            fetch('/assets/enemyDead.wav'),
+            fetch('/assets/enemyHurt.wav'),
+            fetch('/assets/mainSound.wav'),
+            fetch('/assets/asYouWish.wav'),
+            fetch('/assets/forTheAlliance.wav'),
+            fetch('/assets/lokTar.wav'),
+            fetch('/assets/cuseMe.wav'),
+            fetch('/assets/enemyOK.wav'),
         ];
 
         Promise.all(promises)
@@ -59,13 +81,7 @@ export default class NewGame {
                 })
             })
             .then(() => {
-                debugger;
                 return Promise.all(promiseSounds);
-            })
-            .then(values => {
-                values.forEach((value, index) => {
-                    this.sounds[idsSounds[index]] = value.body;
-                })
             })
             .then(values => {
                 const arr = values.map(value => {
