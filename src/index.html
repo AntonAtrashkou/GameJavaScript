@@ -40,39 +40,48 @@
     </section>
   </div>
   <section id="game" class="game">
+
     <div id="game-startScreen" class="game-startScreen">
       <button id="start" class="game-start-bot">Start</button>
       <div id="game-rules" class="game-rules">
         <p>Battele is a fighting game in which you must fight against troll using hero and your brain. Push button attack, solve mini tasks to defeat enemies who are trying to kill you. This game is a huge amount of fun and you will find yourself reentering the arena time and time again to beat your personal records and training your brain!</p>
       </div>
     </div>
+
     <div id="game-activeScreen" class="game-activeScreen">
       <div id="pickMagic" class="pickMagic">
         <button id = "mathTask" class="magic-but">MathTask</button>
-        <button id = "2Task" class="magic-but">Second</button>
-        <button id = "3Task" class="magic-but">Third</button>
-        <button id = "4Task" class="magic-but">Fourth</button>
-        <button id = "5Task" class="magic-but">Fourth</button>
-        <button id = "6Task" class="magic-but">Fourth</button>
-        <button id = "7Task" class="magic-but">Fourth</button>
-        <button id = "8Task" class="magic-but">Fourth</button>
-        <button id = "9Task" class="magic-but">Fourth</button>
-        <button id = "10Task" class="magic-but">Fourth</button>  
-        <button id = "11Task" class="magic-but">Fourth</button>  
+        <button id = "dragTask" class="magic-but">DragTask</button>
       </div>
 
       <canvas id="canvas" class="canvas"></canvas>
 
       <button id="attack" class="attack">Attack</button>
+
       <button id="nextEnemy" class="nextEnemy">Next<br>Enemy</button>
+
       <div id="task" class="task">
-          <div id="task-text" class="task-text"></div>
+        
+        <div id="mathTaskContainer" class="mathTask">
+
+          <p>What is the result of this expression?</p>
           <div id="task-condition" class="task-condition"></div>
           <input id="task-answer" class="task-answer" type="text" placeholder="Answer" required>
-          <button id="accept-task" class="task-but">Reply!</button>
+          
+        </div>
+        
+        <div id="dragTaskContainer" class="gragTask">
 
-      <div id="lost-screen" class="lost-screen">
-      <div id="won-screen" class="won-screen">
+          <p>Drag parts of words to create compound word!</p>
+
+        </div>
+
+        <button id="accept-task" class="task-but">Reply!</button>
+        
+        <div id="lost-screen" class="lost-screen"></div>
+
+        <div id="won-screen" class="won-screen"></div>
+
     </div>
   </section>
   <section id="score" class="score">

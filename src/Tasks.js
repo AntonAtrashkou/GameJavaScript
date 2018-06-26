@@ -1,28 +1,28 @@
-import MathTask from './MathTask';
+import MathTask from './Task/MathTask';
+import DragTask from './Task/DragTask';
 
 export default class Tasks {
     constructor(id, hero, enemy, callback, soundPlay) {
         this.soundPlay = soundPlay;
         this.allTasks = {
             "mathTask": new MathTask(1, 10),
+            "dragTask": new DragTask(),
         };
         this.disableAtckBtn = callback;
         this.task = document.getElementById('task');
-        this.taskText = document.getElementById('task-text');
-        this.condition = document.getElementById('task-condition');
-        this.taskAnswer = document.getElementById('task-answer');
+
+        this.currentTask = this.allTasks[id];
+
         this.acceptTaskButton = document.getElementById('accept-task');
         this.lostScreen = document.getElementById('lost-screen');
         this.wonScreen = document.getElementById('won-screen');
         this.pickMagic = document.getElementById('pickMagic');
 
-        this.init(this.allTasks[id], hero, enemy);
-
+        this.init(this.currentTask, hero, enemy);
     }
+
     init(currentTask, hero, enemy) {
-        this.taskText.innerHTML =  currentTask.text;
-        this.condition.innerHTML = currentTask.condition;      
-        this.result = currentTask.result;
+        currentTask.init();
         this.heroAttackKey = currentTask.attackKey;
         this.task.style.display = 'flex';
         this.pickMagic.style.display = 'none';
@@ -38,7 +38,7 @@ export default class Tasks {
     }
 
     checkResult(hero, enemy) { 
-        if (+this.taskAnswer.value === this.result) {
+        if (this.currentTask.checkResult()) {
             this.task.style.display = 'none';
             this.wonScreen.style.display = 'block';
             this.soundPlay('forTheAlliance', false);
@@ -54,16 +54,11 @@ export default class Tasks {
             setTimeout(() => {
                 this.lostScreen.style.display = 'none';
                 enemy.attack(hero.triggerHurt.bind(hero));
-
             }, 500);
         }
 
-        this.taskText.innerHTML = '';
-        this.condition.innerHTML = ''; 
-        this.taskAnswer.value = '';
-        
-     
-        
+        this.currentTask.clearFileds();
+
         this.acceptTaskButton.removeEventListener('click', this.handleClick);
     }
 

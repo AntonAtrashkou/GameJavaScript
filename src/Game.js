@@ -95,7 +95,7 @@ export default class Game {
     soundPlay(sound, repeatSound) {
         this.sound = new Audio();
         this.sound.src = this.sounds[sound];
-        this.sound.volume= 0.2;
+        this.sound.volume= 0.02;
         if(repeatSound) {
             this.sound.loop = true;
         }

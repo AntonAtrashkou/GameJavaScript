@@ -145,7 +145,15 @@
     transform: translate(-50%,-50%);
 }
 
-.task-text {
+.mathTask {
+    display: none;
+}
+
+.gragTask {
+    display: none;
+}
+
+.task p {
     font-size: 1em;
 }
 
