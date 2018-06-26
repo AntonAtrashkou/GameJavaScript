@@ -13,7 +13,6 @@ export default class MathTask {
         this.generateOperator();
         this.generateResult(this.operator);
         this.conditionText = `${this.firstOperand} ${this.operator} ${this.secondOperand }`;
-        // this.text = 'wqeqweqweqweqwe';
     }
 
     init() {
@@ -24,11 +23,11 @@ export default class MathTask {
 
     checkResult() {
         return +this.taskAnswer.value === this.result;
-        this.mathTask.style.display = 'none';
     }
-
+    
     clearFileds() {
         // this.taskText.innerHTML = '';
+        this.mathTask.style.display = 'none';
         this.condition.innerHTML = ''; 
         this.taskAnswer.value = '';
     }

@@ -4,14 +4,21 @@ import DragTask from './Task/DragTask';
 export default class Tasks {
     constructor(id, hero, enemy, callback, soundPlay) {
         this.soundPlay = soundPlay;
-        this.allTasks = {
-            "mathTask": new MathTask(1, 10),
-            "dragTask": new DragTask(),
-        };
+
+
+        switch(id) {
+            case "mathTask": 
+                this.currentTask = new MathTask(1, 10);
+                break;
+            case "dragTask":
+                this.currentTask = new DragTask();
+                break;
+            default:
+                this.currentTask = new MathTask(1, 10);
+        }
+
         this.disableAtckBtn = callback;
         this.task = document.getElementById('task');
-
-        this.currentTask = this.allTasks[id];
 
         this.acceptTaskButton = document.getElementById('accept-task');
         this.lostScreen = document.getElementById('lost-screen');

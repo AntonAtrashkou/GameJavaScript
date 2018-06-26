@@ -1,34 +1,41 @@
+import vocabulary from './vocabulary';
+
 export default class DragTask {
     constructor() {
+        this.dragStartHandler = (e) => this.dragStart(e);
+        this.dropHandler = (e) => this.drop(e);
+        this.allowDropHandler = (e) => this.allowDrop(e);
+
         this.dragTask = document.getElementById('dragTaskContainer');
-        this.dragTask.addEventListener('dragstart', (e) => this.dragStart(e));
-        this.dragTask.addEventListener('drop', (e) => this.drop(e));
-        this.dragTask.addEventListener('dragover', (e) => this.allowDrop(e));
+        this.dragTask.addEventListener('dragstart', this.dragStartHandler);
+        this.dragTask.addEventListener('drop', this.dropHandler);
+        this.dragTask.addEventListener('dragover', this.allowDropHandler);
 
         this.attackKey = 'fireball';
+
+        this.vocabulary = vocabulary;
     }
 
     init() {
         this.dragTask.style.display = 'flex';
-
-        this.phrase = 'red';
         this.arrayOfCells = [];
         this.dragElement = null;
-
-        // let index = Math.floor(Math.random() * this.vocabulary.length);
-        // this.word = this.vocabulary[index].word;
+        let index = Math.floor(Math.random() * this.vocabulary.length);
+        this.phrase = this.vocabulary[index].word;
         this.createField();
     }
 
     checkResult() {
         const answer = this.arrayOfCells.map(cell => cell.innerHTML).join('');
         return answer === this.phrase;
-        this.dragTask.style.display = 'none';
     }
 
     clearFileds() {
-        this.dragElement = null;
-        this.dragTask.innerHTML = '';
+        this.dragTask.style.display = 'none';
+        this.dragTask.removeChild(this.wordContainer);
+        this.dragTask.removeEventListener('dragstart', this.dragStartHandler);
+        this.dragTask.removeEventListener('drop', this.dropHandler);
+        this.dragTask.removeEventListener('dragover', this.allowDropHandler);
     }
 
     createField() {
