@@ -44,27 +44,27 @@ export default class NewGame {
         const idsImg = ['bgdImg', 'spriteKnightImg', 'spriteTrollStaticImg', 'spriteTrollAttackImg', 'spriteTrollHurtImg', 'spriteTrollDieImg', 'spriteEffectsImg'];
         const idsSounds = ['heroAttack', 'heroDead', 'heroHurt', 'enemyAttack', 'enemyDead', 'enemyHurt', 'mainSound',  'asYouWish', 'forTheAlliance', 'lokTar', 'cuseMe', 'enemyOK'];
         const promises = [
-            fetch('/assets/background.png'),
-            fetch('/assets/spriteKnight.png'),
-            fetch('/assets/spriteTrollStatic.png'),
-            fetch('/assets/spriteTrollAttack.png'),
-            fetch('/assets/spriteTrollHurt.png'),
-            fetch('/assets/spriteTrollDie.png'),
-            fetch('/assets/spriteEffects.png'),
+            fetch('assets/background.png'),
+            fetch('assets/spriteKnight.png'),
+            fetch('assets/spriteTrollStatic.png'),
+            fetch('assets/spriteTrollAttack.png'),
+            fetch('assets/spriteTrollHurt.png'),
+            fetch('assets/spriteTrollDie.png'),
+            fetch('assets/spriteEffects.png'),
         ];
         const promiseSounds = [
-            fetch('/assets/heroAttack.wav'),
-            fetch('/assets/heroDead.wav'),
-            fetch('/assets/heroHurt.wav'),
-            fetch('/assets/enemyAttack.wav'),
-            fetch('/assets/enemyDead.wav'),
-            fetch('/assets/enemyHurt.wav'),
-            fetch('/assets/mainSound.wav'),
-            fetch('/assets/asYouWish.wav'),
-            fetch('/assets/forTheAlliance.wav'),
-            fetch('/assets/lokTar.wav'),
-            fetch('/assets/cuseMe.wav'),
-            fetch('/assets/enemyOK.wav'),
+            fetch('assets/heroAttack.wav'),
+            fetch('assets/heroDead.wav'),
+            fetch('assets/heroHurt.wav'),
+            fetch('assets/enemyAttack.wav'),
+            fetch('assets/enemyDead.wav'),
+            fetch('assets/enemyHurt.wav'),
+            fetch('assets/mainSound.wav'),
+            fetch('assets/asYouWish.wav'),
+            fetch('assets/forTheAlliance.wav'),
+            fetch('assets/lokTar.wav'),
+            fetch('assets/cuseMe.wav'),
+            fetch('assets/enemyOK.wav'),
         ];
 
         Promise.all(promises)
