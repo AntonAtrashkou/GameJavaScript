@@ -17,13 +17,13 @@ export default class Login {
         this.emailInput = document.getElementById('email');
         
         this.firstNameInputEvent = this.firstNameInput.addEventListener('change', (e) => {
-            this.firstName = e.target.value;
+            this.firstName = e.target.value.trim();
         });
         this.lastNameInputEvent = this.lastNameInput.addEventListener('change', (e) => {
-            this.lastName = e.target.value;
+            this.lastName = e.target.value.trim();
         });
         this.emailInputEvent = this.emailInput.addEventListener('change', (e) => {
-            this.email = e.target.value;
+            this.email = e.target.value.trim();
         });
     }
     

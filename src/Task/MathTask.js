@@ -2,9 +2,8 @@ export default class MathTask {
     constructor(min, max) {
         this.mathTask = document.getElementById('mathTaskContainer');
 
-        // this.taskText = document.getElementById('task-text');
-        this.condition = document.getElementById('task-condition');
-        this.taskAnswer = document.getElementById('task-answer');
+        this.condition = document.getElementById('mathTask-condition');
+        this.taskAnswer = document.getElementById('mathTask-answer');
 
         this.attackKey = 'pinkFire';
         this.operators =['+', '-', '*', '/'];
@@ -17,7 +16,6 @@ export default class MathTask {
 
     init() {
         this.mathTask.style.display = 'flex';
-        // this.taskText.innerHTML =  this.text;
         this.condition.innerHTML = this.conditionText;
     }
 
@@ -26,7 +24,6 @@ export default class MathTask {
     }
     
     clearFileds() {
-        // this.taskText.innerHTML = '';
         this.mathTask.style.display = 'none';
         this.condition.innerHTML = ''; 
         this.taskAnswer.value = '';
