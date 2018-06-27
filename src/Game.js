@@ -19,8 +19,8 @@ export default class Game {
         this.mainLoop = this.mainLoop.bind(this);
 
         this.initGame();
-        this.stateSubscrioption = document.addEventListener('updateState', (e) => {
-            if (e.detail.images) {
+        document.addEventListener('updateState', (e) => {
+            if (e.detail.images && !this.isStart) {
                 this.images = e.detail.images;
                 this.sounds = e.detail.sounds;
                 this.name = e.detail.lastName + ' ' +e.detail.firstName;
