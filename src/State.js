@@ -43,7 +43,6 @@ export default class State {
 
     saveRecords() {
         let totalScore = this.state.score;
-        debugger;
         if (this.state.records[this.state.email]) {
             if (this.state.score < this.state.records[this.state.email].score) {
                 totalScore = this.state.records[this.state.email].score;
@@ -60,14 +59,12 @@ export default class State {
                 }
             }
         );
-        console.log(JSON.stringify(this.state.records));
         localStorage.setItem('myStore', JSON.stringify(this.state.records));    
 
     }
 
     getRecords() {
         const store = localStorage.getItem('myStore');
-        console.log(store);
         if (store) {
             return JSON.parse(store);
         }

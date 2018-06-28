@@ -1,6 +1,7 @@
 import MathTask from './Task/MathTask';
 import DragTask from './Task/DragTask';
 import TranslationTask from './Task/TranslationTask';
+import ListenningTask from './Task/ListenningTask';
 
 export default class Tasks {
     constructor(id, hero, enemy, callback, soundPlay) {
@@ -16,6 +17,9 @@ export default class Tasks {
                 break;
             case "translationTask":
                 this.currentTask = new TranslationTask();
+                break;
+            case "listenningTask":
+                this.currentTask = new ListenningTask();
                 break;
             default:
                 this.currentTask = new MathTask(1, 10);
