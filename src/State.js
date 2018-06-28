@@ -44,7 +44,7 @@ export default class State {
     saveRecords() {
         debugger;
         if (this.state.records) {
-            if (+this.state.records[this.state.email].score && +this.state.records[this.state.email].score < this.state.score) {
+            if (+this.state.records[this.state.email].score < this.state.score) {
                 this.state.records = Object.assign(
                     this.state.records, 
                     { 
