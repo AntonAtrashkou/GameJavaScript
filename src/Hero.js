@@ -84,7 +84,6 @@ export default class Hero {
 
     updateTableScore() {
         this.clearScoreTable();
-        debugger;
         const values = Object.values(this.records).map(value => {
             return {
                 name: value.firstName + value.lastName,
@@ -99,15 +98,14 @@ export default class Hero {
             }
             return 0;
         });
-
-        for(let i = 0; i < 5; i++) {
+        values.forEach((value, i) => {
             const name = document.createElement('span');
             const score = document.createElement('span');
             name.innerHTML = values[i].name;
             score.innerHTML = values[i].score;
             this.tableScoreItems[i].appendChild(name);
             this.tableScoreItems[i].appendChild(score);
-        }
+        });
     }
 
     update(diff) {

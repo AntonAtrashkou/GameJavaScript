@@ -42,26 +42,32 @@ export default class State {
     }
 
     saveRecords() {
+        let totalScore = this.state.score;
         debugger;
-        if (this.state.records) {
-            if (+this.state.records[this.state.email].score < this.state.score) {
-                this.state.records = Object.assign(
-                    this.state.records, 
-                    { 
-                        [this.state.email]: {
-                            firstName: this.state.firstName,
-                            lastName: this.state.lastName,
-                            score: this.state.score,
-                        }
-                    }
-                );
-                localStorage.setItem('store', JSON.stringify(this.state.records));
+        if (this.state.records[this.state.email]) {
+            if (this.state.score < this.state.records[this.state.email].score) {
+                totalScore = this.state.records[this.state.email].score;
             }
-        } 
+        }
+
+        this.state.records = Object.assign(
+            this.state.records, 
+            { 
+                [this.state.email]: {
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    score: totalScore,
+                }
+            }
+        );
+        console.log(JSON.stringify(this.state.records));
+        localStorage.setItem('myStore', JSON.stringify(this.state.records));    
+
     }
 
     getRecords() {
-        const store = localStorage.getItem('store');
+        const store = localStorage.getItem('myStore');
+        console.log(store);
         if (store) {
             return JSON.parse(store);
         }

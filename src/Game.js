@@ -25,6 +25,7 @@ export default class Game {
                 this.sounds = e.detail.sounds;
                 this.name = e.detail.firstName + ' ' +e.detail.lastName;
                 this.createSprites();
+                this.isStart = true;
             }
         });
     };
@@ -42,7 +43,6 @@ export default class Game {
             document.getElementById('game-startScreen').style.display = 'none';
             document.getElementById('game-activeScreen').style.display = 'flex';   
             this.start = Date.now();
-            this.isStart = true;
             this.mainLoop();
         });
 
@@ -68,6 +68,7 @@ export default class Game {
         })
 
         document.getElementById('toGame').addEventListener('click', () => {
+            this.isStart = false;
             window.updateState();
             document.getElementById('totalScore').innerHTML = "0";
             document.getElementById('score').style.display = "none";
