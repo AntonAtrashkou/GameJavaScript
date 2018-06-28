@@ -23,7 +23,7 @@ export default class Game {
             if (e.detail.images && !this.isStart) {
                 this.images = e.detail.images;
                 this.sounds = e.detail.sounds;
-                this.name = e.detail.lastName + ' ' +e.detail.firstName;
+                this.name = e.detail.firstName + ' ' +e.detail.lastName;
                 this.createSprites();
             }
         });

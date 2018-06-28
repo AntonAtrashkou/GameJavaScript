@@ -3,7 +3,7 @@ import AttackHero from './AttackHero';
 import Health from './Health';
 
 export default class Hero {
-    constructor(ctx, position, imgs, name,soundPlay) {
+    constructor(ctx, position, imgs, name, soundPlay) {
         this.isDead = false;
         this.score = 0;
 
@@ -92,10 +92,10 @@ export default class Hero {
             }
         }).sort((a, b) => {
             if (+a.score < +b.score) {
-                return -1;
+                return 1;
             }
             if (+a.score > +b.score) {
-                return 1;
+                return -1;
             }
             return 0;
         });
@@ -118,8 +118,6 @@ export default class Hero {
         if(this.heroHealth.health <= 0 && !this.isDead) {
             this.triggerDie();
             setTimeout(() => {
-
-        
                 document.getElementById('totalScore').innerHTML = `${this.score}`;
                 document.getElementById('score').style.display = "flex";
             }, 1000);

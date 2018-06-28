@@ -23,11 +23,10 @@ export default class LandingPage {
     }
 
     showDivs(number) {
-        let i;
         let slide = document.getElementsByClassName("slide");
         if (number > slide.length) {this.slideIndex = 1}    
         if (number < 1) {this.slideIndex = slide.length}
-        for (i = 0; i < slide.length; i++) {
+        for (let i = 0; i < slide.length; i++) {
             slide[i].style.display = "none";  
         }
         slide[this.slideIndex-1].style.display = "block";  

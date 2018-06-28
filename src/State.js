@@ -5,7 +5,7 @@ import NewGame from './NewGame';
 
 export default class State {
     constructor() {
-        // localStorage.removeItem('store');
+        localStorage.removeItem('store');
         this.state = {
             firstName: '',
             lastName: '',
@@ -14,7 +14,6 @@ export default class State {
             preload: false,
             records: this.getRecords(),
         }
-        // debugger;
         window.updateState = this.updateState.bind(this);
     }
 
@@ -33,7 +32,6 @@ export default class State {
         this.game = new Game((newState) => {
             this.updateState(newState);
             this.goToScreen('game', 'score');
-            // this.saveGame();
         });
 
     }
@@ -44,25 +42,21 @@ export default class State {
     }
 
     saveRecords() {
-        // debugger;
+        debugger;
         if (this.state.records) {
-
-
-
-
-
-
-            this.state.records = Object.assign(
-                this.state.records, 
-                { 
-                    [this.state.email]: {
-                        firstName: this.state.firstName,
-                        lastName: this.state.lastName,
-                        score: this.state.score,
+            if (+this.state.records[this.state.email].score && +this.state.records[this.state.email].score < this.state.score) {
+                this.state.records = Object.assign(
+                    this.state.records, 
+                    { 
+                        [this.state.email]: {
+                            firstName: this.state.firstName,
+                            lastName: this.state.lastName,
+                            score: this.state.score,
+                        }
                     }
-                }
-            );
-            localStorage.setItem('store', JSON.stringify(this.state.records));
+                );
+                localStorage.setItem('store', JSON.stringify(this.state.records));
+            }
         } 
     }
 
