@@ -19,12 +19,13 @@ export default class Game {
         this.mainLoop = this.mainLoop.bind(this);
 
         this.initGame();
-        this.stateSubscrioption = document.addEventListener('updateState', (e) => {
-            if (e.detail.images) {
+        document.addEventListener('updateState', (e) => {
+            if (e.detail.images && !this.isStart) {
                 this.images = e.detail.images;
                 this.sounds = e.detail.sounds;
-                this.name = e.detail.lastName + ' ' +e.detail.firstName;
+                this.name = e.detail.firstName + ' ' +e.detail.lastName;
                 this.createSprites();
+                this.isStart = true;
             }
         });
     };
@@ -42,7 +43,6 @@ export default class Game {
             document.getElementById('game-startScreen').style.display = 'none';
             document.getElementById('game-activeScreen').style.display = 'flex';   
             this.start = Date.now();
-            this.isStart = true;
             this.mainLoop();
         });
 
@@ -68,6 +68,7 @@ export default class Game {
         })
 
         document.getElementById('toGame').addEventListener('click', () => {
+            this.isStart = false;
             window.updateState();
             document.getElementById('totalScore').innerHTML = "0";
             document.getElementById('score').style.display = "none";
@@ -95,7 +96,7 @@ export default class Game {
     soundPlay(sound, repeatSound) {
         this.sound = new Audio();
         this.sound.src = this.sounds[sound];
-        this.sound.volume= 0.02;
+        this.sound.volume= 0.1;
         if(repeatSound) {
             this.sound.loop = true;
         }

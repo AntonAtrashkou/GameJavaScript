@@ -4,7 +4,7 @@ export default class Health {
         this.position = position;
         this.name = name;
 
-        this.health = 100;
+        this.health = 250;
         this.speed = 1;
 
         this.reduce = 50;

@@ -3,9 +3,13 @@ import AttackHero from './AttackHero';
 import Health from './Health';
 
 export default class Hero {
-    constructor(ctx, position, imgs, name,soundPlay) {
+    constructor(ctx, position, imgs, name, soundPlay) {
         this.isDead = false;
         this.score = 0;
+
+        this.tableScoreItems = document.getElementsByClassName('table-score-item');
+
+
         this.soundPlay = soundPlay;
         this.ctx = ctx;
         this.position = position;
@@ -13,6 +17,20 @@ export default class Hero {
         this.currentState = 'idle';
         this.initHero(imgs);
         this.heroHealth = new Health(ctx, [15, 15], `${name}`,);
+
+        this.records = null;
+
+        document.addEventListener('updateState', (e) => {
+            if (e.detail.records) {
+                this.records = e.detail.records;
+                this.updateTableScore();
+            }
+        });
+
+    }
+
+    saveScore(score) {
+        window.updateState({ score });
     }
 
     initHero(imgs) {
@@ -53,6 +71,41 @@ export default class Hero {
         this.changeCurrrentHeroSprite('die');
         this.soundPlay('heroDead', false);
         this.isDead = true;
+        this.saveScore(this.score);
+    }
+
+    clearScoreTable() {
+        for(let i = 0; i < 5; i++) {
+            this.tableScoreItems[i].innerHTML = '';
+        }
+    }
+
+
+
+    updateTableScore() {
+        this.clearScoreTable();
+        const values = Object.values(this.records).map(value => {
+            return {
+                name: value.firstName + value.lastName,
+                score: value.score,
+            }
+        }).sort((a, b) => {
+            if (+a.score < +b.score) {
+                return 1;
+            }
+            if (+a.score > +b.score) {
+                return -1;
+            }
+            return 0;
+        });
+        values.forEach((value, i) => {
+            const name = document.createElement('span');
+            const score = document.createElement('span');
+            name.innerHTML = values[i].name;
+            score.innerHTML = values[i].score;
+            this.tableScoreItems[i].appendChild(name);
+            this.tableScoreItems[i].appendChild(score);
+        });
     }
 
     update(diff) {

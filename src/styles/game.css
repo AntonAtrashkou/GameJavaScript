@@ -34,23 +34,34 @@
     border: .1em solid rgb(239, 225, 23);
 }
 
+.wrapperLogoGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+    height: 800px;
+    margin: 50px;
+    background-image: url('../img/MainBg.png');
+    box-shadow: 0 0 100px rgba(0,0,0,0.6);
+    background-repeat: no-repeat;
+    border-radius: 20px
+}
+
 .game-rules {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 1em;
     margin: 0 auto;
-    font-size: 2em;
+    font-size: 1.7em;
     text-align: center;
     width: 25em;
-    height: 13em;
+    height: 17em;
     color: rgba(214, 201, 21, 0.9);
     box-shadow: 0 0 120px rgb(214, 201, 21);
     border: .1em solid rgba(214, 201, 21, 0.8);
 }
 
 .canvas {
-    /* display: none; */
     margin-top: 14em;
-    /* background-image: url('../img/MainBg.png'); */
     background-size: cover;
     box-shadow: 0 0 150px rgba(0,0,0,0.6);
     border: .2em solid rgb(25, 20, 7);
@@ -58,7 +69,6 @@
 }
 
 .attack {
-    /* display: none; */
     width: 6em;
     position: absolute;
     top: 55%;
@@ -103,7 +113,7 @@
 .magic-but {
     background-color: rgba(129, 104, 143, 0.93);
     box-shadow: 0 5px 40px rgba(0,0,0,0.9);
-    width: 5.5em;
+    width: 7em;
     font-size: 1.3em;
     color: rgb(234, 221, 239);
     padding: .35em;
@@ -145,7 +155,7 @@
     transform: translate(-50%,-50%);
 }
 
-.mathTask {
+.task-container {
     display: none;
     flex-direction: column;
     align-items: center;
