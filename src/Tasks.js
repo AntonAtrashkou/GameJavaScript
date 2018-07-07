@@ -1,3 +1,5 @@
+import './styles/tasks.css';
+
 import MathTask from './Task/MathTask';
 import DragTask from './Task/DragTask';
 import TranslationTask from './Task/TranslationTask';
@@ -6,7 +8,6 @@ import ListenningTask from './Task/ListenningTask';
 export default class Tasks {
     constructor(id, hero, enemy, callback, soundPlay) {
         this.soundPlay = soundPlay;
-
 
         switch(id) {
             case "mathTask": 

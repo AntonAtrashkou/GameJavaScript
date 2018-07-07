@@ -64,6 +64,7 @@ const base = {
         loader: 'html-loader',
         options: {
           minimize: false,
+          interpolate: true,
           attrs: ['img:src', 'link:href'],
         },
       },

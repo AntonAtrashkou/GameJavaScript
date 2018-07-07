@@ -1,9 +1,10 @@
-import './styles/game.css';
+import './styles/gameStartScreen.css';
+import './styles/gameActiveScreen.css';
 import './styles/score.css';
+
 import Background from './Background';
 import Enemy from './Enemy';
 import Hero from './Hero';
-// import AttackHero from './AttackHero';
 import Tasks from './Tasks';
 import Sprite from './Sprite';
 

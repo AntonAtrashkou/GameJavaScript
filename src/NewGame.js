@@ -41,6 +41,7 @@ export default class NewGame {
         });
     };
 
+
     loadAssets() {
         this.loader.style.display = 'block';
         const idsImg = ['bgdImg', 'spriteKnightImg', 'spriteTrollStaticImg', 'spriteTrollAttackImg', 'spriteTrollHurtImg', 'spriteTrollDieImg', 'spriteEffectsImg'];

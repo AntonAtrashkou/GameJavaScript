@@ -11,4 +11,21 @@ body {
     height: 100%;
 }
 
+.wrapperLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+    height: 800px;
+    margin: 50px;
+    background-image: url('../img/MainBg.png');
+    box-shadow: 0 0 100px rgba(0,0,0,0.6);
+    background-repeat: no-repeat;
+    border-radius: 20px
+}
 
+.game {
+    display: none;
+    position: relative;
+    font-family: "Open Sans",sans-serif;
+}

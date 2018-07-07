@@ -24,6 +24,7 @@ export default class AttackHero {
         this.heroAttackSprites['fireRay'] = new Sprite(this.ctx, 480, 80, 40, heroAttackImage, 10, [0], true);
         this.heroAttackSprites['blueDrop'] = new Sprite(this.ctx, 560, 80, 40, heroAttackImage, 10, [0], true);        
     }
+    
     changeCurrrentAttackposition() {
         this.position[0] = this.position[0] + 4;
     }

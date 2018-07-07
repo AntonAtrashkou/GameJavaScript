@@ -1,0 +1,60 @@
+.game-activeScreen {
+    display: none;
+}
+
+.canvas {
+    margin-top: 14em;
+    background-size: cover;
+    box-shadow: 0 0 150px rgba(0,0,0,0.6);
+    border: .2em solid rgb(25, 20, 7);
+    border-radius: .8em;
+}
+
+.attack {
+    width: 6em;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(128, 14, 14);
+    box-shadow: 0 0 67px rgb(169, 55, 55);
+    font-weight: 700;
+    font-size: 2em;
+    color: rgb(218, 207, 207);
+    padding: .25em;
+    border-radius: .2em;
+    border: 3px solid rgb(224, 169, 169);
+}
+
+.attack:hover {
+    background-color: rgb(170, 27, 27);
+    box-shadow: 0 0 67px rgb(241, 42, 42);
+    border: 3px solid rgb(252, 209, 209);
+    color: rgb(240, 231, 231);
+}
+
+.nextEnemy {
+    display: none;
+    font-weight: 800;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    width: 6em;
+    height: 6em;
+    transform: translate(-50%,-50%);
+    background: radial-gradient( rgb(83, 169, 90) 30%, rgb(119, 221, 117) 100%);
+    box-shadow: 0 0 30px rgb(102, 206, 79);
+    font-size: 1.1em;
+    color: rgb(228, 234, 225);
+    padding: .25em;
+    margin-top: 1em;
+    border-radius: 50%;
+    border: 3px solid rgba(13, 14, 12, 0.13);
+}
+
+.nextEnemy:hover {
+    background: radial-gradient( rgb(83, 169, 90) 30%, rgb(164, 245, 162) 100%);
+    box-shadow: 0 0 30px rgb(139, 241, 115);
+    border: 3px solid rgba(13, 14, 12, 0.13);
+    color: rgb(236, 245, 231);
+}

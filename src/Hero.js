@@ -9,7 +9,6 @@ export default class Hero {
 
         this.tableScoreItems = document.getElementsByClassName('table-score-item');
 
-
         this.soundPlay = soundPlay;
         this.ctx = ctx;
         this.position = position;
@@ -79,8 +78,6 @@ export default class Hero {
             this.tableScoreItems[i].innerHTML = '';
         }
     }
-
-
 
     updateTableScore() {
         this.clearScoreTable();
