@@ -1,6 +1,6 @@
-import Sprite from './Sprite';
+import Sprite from '../../Sprite/sprite';
 import AttackHero from './AttackHero';
-import Health from './Health';
+import Health from '../Health/Health';
 
 export default class Hero {
     constructor(ctx, position, imgs, name, soundPlay) {

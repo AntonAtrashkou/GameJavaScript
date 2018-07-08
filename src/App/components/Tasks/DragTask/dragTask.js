@@ -1,4 +1,5 @@
-import vocabulary from './vocabulary';
+// import vocabulary from './vocabulary';
+import vocabulary from '../vocabulary';
 
 export default class DragTask {
     constructor() {

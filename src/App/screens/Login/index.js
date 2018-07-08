@@ -1,4 +1,4 @@
-import './styles/login.css';
+import './index.css';
 
 export default class Login {
     constructor(forward) {

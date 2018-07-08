@@ -1,28 +1,29 @@
-import './styles/newGame.css';
-import './styles/loader.css';
+// import './styles/newGame.css';
+// import './styles/loader.css';
+import './index.css';
 
-import './img/background.png';
-import './img/hero/spriteKnight.png';
-import './img/hero/spriteEffects.png';
-import './img/enemy/spriteTrollStatic.png';
-import './img/enemy/spriteTrollAttack.png';
-import './img/enemy/spriteTrollHurt.png';
-import './img/enemy/spriteTrollDie.png';
+import '../../../Assets/img/background.png';
+import '../../../Assets/img/hero/spriteKnight.png';
+import '../../../Assets/img/hero/spriteEffects.png';
+import '../../../Assets/img/enemy/spriteTrollStatic.png';
+import '../../../Assets/img/enemy/spriteTrollAttack.png';
+import '../../../Assets/img/enemy/spriteTrollHurt.png';
+import '../../../Assets/img/enemy/spriteTrollDie.png';
 
-import './sounds/hero/heroAttack.wav';
-import './sounds/hero/heroDead.wav';
-import './sounds/hero/heroHurt.wav';
-import './sounds/hero/forTheAlliance.wav';
-import './sounds/hero/asYouWish.wav';
+import '../../../Assets/sounds/hero/heroAttack.wav';
+import '../../../Assets/sounds/hero/heroDead.wav';
+import '../../../Assets/sounds/hero/heroHurt.wav';
+import '../../../Assets/sounds/hero/forTheAlliance.wav';
+import '../../../Assets/sounds/hero/asYouWish.wav';
 
-import './sounds/enemy/enemyAttack.wav';
-import './sounds/enemy/enemyDead.wav';
-import './sounds/enemy/enemyHurt.wav';
-import './sounds/enemy/lokTar.wav';
-import './sounds/enemy/cuseMe.wav';
-import './sounds/enemy/enemyOK.wav';
+import '../../../Assets/sounds/enemy/enemyAttack.wav';
+import '../../../Assets/sounds/enemy/enemyDead.wav';
+import '../../../Assets/sounds/enemy/enemyHurt.wav';
+import '../../../Assets/sounds/enemy/lokTar.wav';
+import '../../../Assets/sounds/enemy/cuseMe.wav';
+import '../../../Assets/sounds/enemy/enemyOK.wav';
 
-import './sounds/game/mainSound.wav';
+import '../../../Assets/sounds/game/mainSound.wav';
 
 
 

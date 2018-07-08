@@ -1,4 +1,4 @@
-import Sprite from './Sprite';
+import Sprite from '../../Sprite/sprite';
 
 export default class AttackHero {
     constructor(ctx, img) {

@@ -6,18 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Battle</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link rel="icon" href="img/titleImg.png">
+  <link rel="icon" href="./Assets/img/titleImg.png">
 </head>
 <body>
     <div id="wrapper-logo" class="wrapperLogo">
-      ${require('./Login.html')}
-      ${require('./NewGame.html')}
+      ${require('./App/screens/Login/index.html')}
+      ${require('./App/screens/Loading/index.html')}
     </div>
     <div id="game" class="game">
-      ${require('./GameStartScreen.html')}
-      ${require('./GameActiveScreen.html')}
-      ${require('./Tasks.html')}
+      ${require('./App/screens/Game/index.html')}
+      ${require('./App/components/Tasks/index.html')}
     </div>
-    ${require('./Score.html')}
 </body>
 </html>
+

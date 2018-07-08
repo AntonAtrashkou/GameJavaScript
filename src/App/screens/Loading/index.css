@@ -1,3 +1,7 @@
+.newGame {
+    display: none;
+}
+
 .loader {
     display: none;
     color: rgb(112, 15, 23);

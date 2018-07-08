@@ -1,9 +1,9 @@
-import './styles/tasks.css';
+import './index.css';
 
-import MathTask from './Task/MathTask';
-import DragTask from './Task/DragTask';
-import TranslationTask from './Task/TranslationTask';
-import ListenningTask from './Task/ListenningTask';
+import MathTask from './MathTask/mathTask';
+import DragTask from './DragTask/dragTask';
+import TranslationTask from './TranslationTask/translationTask';
+import ListenningTask from './ListenningTask/listenningTask';
 
 export default class Tasks {
     constructor(id, hero, enemy, callback, soundPlay) {

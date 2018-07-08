@@ -1,9 +1,8 @@
-import Login from './Login';
-import Game from './Game';
-import NewGame from './NewGame';
+import Login from './screens/Login';
+import Game from './screens/Game';
+import Loading from './screens/Loading';
 
-
-export default class State {
+export default class App {
     constructor() {
         localStorage.removeItem('store');
         this.state = {
@@ -24,7 +23,7 @@ export default class State {
             this.goToScreen('login', 'newGame');    
         });
 
-        this.newGame = new NewGame((newState) => {
+        this.loading = new Loading((newState) => {
             this.updateState(newState);
             this.goToScreen('newGame', 'game');
         });

@@ -1,7 +1,7 @@
-import Sprite from './Sprite';
+import Sprite from '../../Sprite/sprite';
 import RandomingEnemy from './RandomingEnemy';
 import AttackEnemy from './AttackEnemy';
-import Health from './Health';
+import Health from '../Health/Health';
 import EnemyName from './EnemyName';
 
 export default class Enemy {

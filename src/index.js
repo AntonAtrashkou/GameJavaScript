@@ -1,7 +1,7 @@
-import State from './State';
+import App from './App/App';
 
-import './styles/normalize.css';
-import './styles/index.css';
+import './Styles/normalize.css';
+import './index.css';
 
-const state = new State();
+const state = new App();
 state.initApp();

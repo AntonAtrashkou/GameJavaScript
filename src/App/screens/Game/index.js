@@ -1,12 +1,12 @@
-import './styles/gameStartScreen.css';
-import './styles/gameActiveScreen.css';
-import './styles/score.css';
+// import './styles/gameStartScreen.css';
+// import './styles/gameActiveScreen.css';
+import './index.css';
 
-import Background from './Background';
-import Enemy from './Enemy';
-import Hero from './Hero';
-import Tasks from './Tasks';
-import Sprite from './Sprite';
+import Background from './GameUnits/Background/background';
+import Enemy from './GameUnits/Enemy/enemy';
+import Hero from './GameUnits/Hero/hero';
+import Tasks from '../../components/Tasks';
+import Sprite from './Sprite/sprite';
 
 export default class Game {
     constructor (forward) {
