@@ -1,13 +1,16 @@
 import Sprite from '../../Sprite/sprite';
-import RandomingEnemy from './RandomingEnemy';
-import AttackEnemy from './AttackEnemy';
+import AttackEnemy from './attackEnemy';
 import Health from '../Health/Health';
-import EnemyName from './EnemyName';
 
 export default class Enemy {
     constructor(ctx, imgs, soundPlay) {
         this.ctx = ctx;
         this.soundPlay = soundPlay;
+        this.enemyPartsName = {
+            names : ['Crag', 'Straker', 'Sandro', 'Dace', 'Gunnar', 'Jabarkas', 'Galthran', 'Vokial', 'Xyron', 'Calh', 'Solmyr'],
+            characters :['vile', 'awful', 'creepy', 'rotten', 'gruesome', 'hateful', 'horrific', 'cloying', 'nasty', 'icky'],
+            nouns : ['goblin', 'orc', 'troll', 'monster', 'bastard', 'warrior', 'freak', 'flayer', 'butcher','cannibal'],
+        };
         this.images = {
             'idle': imgs['spriteTrollStaticImg'],
             'die': imgs['spriteTrollDieImg'],
@@ -25,11 +28,12 @@ export default class Enemy {
             lefrArm: [630, 265],
             head: [570, 215],
         };
+        
+        this.createEnemyName();
+        this.createEnemyBody(3);
 
-        this.enemyName = new EnemyName();
-        this.enemyHealth = new Health(ctx, [635, 15], this.enemyName.fullName);
+        this.enemyHealth = new Health(ctx, [635, 15], this.enemyFullName);
 
-        this.randomingEnemy = new RandomingEnemy(0, 2);
         this.init();
     }
 
@@ -38,12 +42,12 @@ export default class Enemy {
             const enemyImage = new Image();
             enemyImage.src = entrie[1];
             this.sprites[entrie[0]] = {
-                rightLeg: new Sprite(this.ctx, this.randomingEnemy.rightLeg, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
-                leftLeg: new Sprite(this.ctx, this.randomingEnemy.leftLeg, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
-                rightArm: new Sprite(this.ctx, this.randomingEnemy.rightArm, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
-                body: new Sprite(this.ctx, this.randomingEnemy.body, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
-                lefrArm: new Sprite(this.ctx, this.randomingEnemy.leftArm, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
-                head: new Sprite(this.ctx, this.randomingEnemy.head, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
+                rightLeg: new Sprite(this.ctx, this.rightLeg, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
+                leftLeg: new Sprite(this.ctx, this.leftLeg, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
+                rightArm: new Sprite(this.ctx, this.rightArm, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
+                body: new Sprite(this.ctx, this.body, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
+                lefrArm: new Sprite(this.ctx, this.leftArm, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
+                head: new Sprite(this.ctx, this.head, 210, 210, enemyImage, 7, [0,1,2,3,4], false),
             }
 
             this.attackEnemy = new AttackEnemy(this.ctx, this.images['attack']);
@@ -52,6 +56,29 @@ export default class Enemy {
             value.isInfinite = true;
         }) 
     }
+    
+    randomPart (parts) {
+        let rand = Math.floor( Math.random() * (parts));
+        return rand;
+    }
+
+    createEnemyName() { 
+        this.enemyFullName = '';
+        Object.values(this.enemyPartsName).forEach(entrie => {
+            let rand = this.randomPart(entrie.length);
+            this.enemyFullName +=' ' + entrie[rand];
+            console.log(this.enemyFullName);
+        });
+    }
+
+    createEnemyBody(bodyShapes) {
+        this.head = this.randomPart(bodyShapes) * 1260 + 10;
+        this.body = this.randomPart(bodyShapes) * 1260 + 215;
+        this.leftArm = this.randomPart(bodyShapes) * 1260 + 425;
+        this.rightArm = this.randomPart(bodyShapes) * 1260 + 635;
+        this.leftLeg = this.randomPart(bodyShapes) * 1260 + 845;
+        this.rightLeg = this.randomPart(bodyShapes) * 1260 + 1055;
+    };
 
     changeCurrrentEnemySprite(key) {
         this.currentState = key;

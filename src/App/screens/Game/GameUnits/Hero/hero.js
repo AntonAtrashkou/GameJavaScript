@@ -1,5 +1,5 @@
 import Sprite from '../../Sprite/sprite';
-import AttackHero from './AttackHero';
+import AttackHero from './attackHero';
 import Health from '../Health/Health';
 
 export default class Hero {
